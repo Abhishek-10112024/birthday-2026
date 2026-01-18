@@ -11,7 +11,7 @@ import {
   HostListener,
   OnDestroy
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MediaItem } from '../../models/memory.model';
@@ -19,7 +19,7 @@ import { MemoryService } from '../../services/memory.service';
 
 @Component({
   selector: 'app-lightbox',
-  imports: [CommonModule, NgOptimizedImage, MatProgressSpinnerModule],
+  imports: [CommonModule, MatProgressSpinnerModule],
   templateUrl: './lightbox.component.html',
   styleUrl: './lightbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

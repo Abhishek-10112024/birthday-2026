@@ -7,11 +7,12 @@ import { gsap } from 'gsap';
 import { AudioService } from '../../services/audio.service';
 import { MemoryService } from '../../services/memory.service';
 import { MemoryDialogComponent } from '../../components/memory-dialog/memory-dialog.component';
+import { AudioControlComponent } from '../../components/audio-control/audio-control.component';
 import { Memory } from '../../models/memory.model';
 
 @Component({
   selector: 'app-landing',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, AudioControlComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
@@ -20,6 +21,8 @@ export class LandingComponent implements OnInit {
   private audioService = inject(AudioService);
   private dialog = inject(MatDialog);
   private memoryService = inject(MemoryService);
+  
+  showAudioHint = true;
 
   // Get memories from the service instead of duplicating
   get memories(): Memory[] {
@@ -29,8 +32,31 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     this.animateStars();
     this.animateTitle();
-    // Audio disabled for now - add your own audio file later
-    // this.audioService.loadAudio('assets/audio/ambient.mp3');
+    // Start background music (will require user interaction due to browser autoplay policy)
+    this.initBackgroundMusic();
+    // Add click listener to start audio on first interaction
+    this.setupAudioInteraction();
+  }
+
+  private initBackgroundMusic(): void {
+    // Try to play background music
+    // Note: Modern browsers require user interaction before playing audio
+    this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+  }
+
+  private setupAudioInteraction(): void {
+    // Listen for any click on the page to start audio
+    const startAudio = () => {
+      if (!this.audioService.isPlaying()) {
+        this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+      }
+      // Hide the audio hint
+      this.showAudioHint = false;
+      // Remove listener after first interaction
+      document.removeEventListener('click', startAudio);
+    };
+    
+    document.addEventListener('click', startAudio, { once: true });
   }
 
   private animateStars(): void {
@@ -72,7 +98,13 @@ export class LandingComponent implements OnInit {
   }
 
   startJourney(): void {
-    this.audioService.play();
+    // Play sound effect for button click
+    this.audioService.playSoundEffect('star-click');
+    
+    // Ensure background music is playing (user interaction allows autoplay)
+    if (!this.audioService.isPlaying()) {
+      this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+    }
     
     gsap.to('.landing-container', {
       opacity: 0,
@@ -109,6 +141,9 @@ export class LandingComponent implements OnInit {
     if (memoryIndex < this.memories.length) {
       const memory = this.memories[memoryIndex];
       
+      // Play star click sound effect
+      this.audioService.playSoundEffect('star-click');
+      
       // Animate the clicked star
       const clickableStars = document.querySelectorAll('.clickable-star');
       if (clickableStars[memoryIndex]) {
@@ -121,19 +156,32 @@ export class LandingComponent implements OnInit {
         });
       }
 
+      // Fade out background music when opening dialog
+      this.audioService.fadeOutBackground(500);
+
       // Open memory dialog
-      this.dialog.open(MemoryDialogComponent, {
+      const dialogRef = this.dialog.open(MemoryDialogComponent, {
         data: memory,
         width: '90vw',
         maxWidth: '600px',
         panelClass: 'memory-dialog-panel'
       });
+
+      // Fade in background music when dialog closes
+      dialogRef.afterClosed().subscribe(() => {
+        this.audioService.fadeInBackground(500);
+      });
     }
   }
 
   scrollToContent(): void {
-    // Navigate to constellation page
-    this.audioService.play();
+    // Play sound effect
+    this.audioService.playSoundEffect('star-click');
+    
+    // Ensure background music is playing
+    if (!this.audioService.isPlaying()) {
+      this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+    }
     
     gsap.to('.landing-container', {
       opacity: 0,

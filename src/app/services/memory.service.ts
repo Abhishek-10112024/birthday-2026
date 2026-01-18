@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { Memory, ConstellationLine } from '../models/memory.model';
+import { Memory, ConstellationLine, MediaItem } from '../models/memory.model';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +15,15 @@ export class MemoryService {
       description: 'The day our paths crossed and everything changed. I remember your smile lighting up the room.',
       media: [
         {
-          url: 'https://i.ibb.co/VcFPDZMR/first-date.jpg',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20date.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRlLmpwZyIsImlhdCI6MTc2ODc0Nzk1MiwiZXhwIjoxODMxODE5OTUyfQ.O3ZyMuILfInr1wWnNAEcESyFcRWjooI2fcb3xrkubb8',
           type: 'image',
           caption: 'The moment we first met at the coffee shop'
         },
         {
-          url: 'https://i.ibb.co/jPwvp8LJ/first-data-2.jpg',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20data%20-2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRhIC0yLmpwZyIsImlhdCI6MTc2ODc0ODA4OSwiZXhwIjoxODMxODIwMDg5fQ.IKsZxTjhE1VQYvRhbaP1JVasrQPsa1mBMabcbghpYss',
           type: 'image',
           caption: 'Your beautiful smile that captured my heart'
         },
-        // {
-        //   url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop',
-        //   type: 'image',
-        //   caption: 'The cozy corner where we talked for hours'
-        // },
-        // {
-        //   url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop',
-        //   type: 'image',
-        //   caption: 'That first cup of coffee together'
-        // }
       ],
       x: 15,
       y: 25,

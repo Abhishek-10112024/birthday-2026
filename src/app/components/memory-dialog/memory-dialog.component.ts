@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, signal } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,6 @@ import { MemoryService } from '../../services/memory.service';
   selector: 'app-memory-dialog',
   imports: [
     CommonModule,
-    NgOptimizedImage,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,

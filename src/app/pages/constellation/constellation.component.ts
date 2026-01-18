@@ -8,6 +8,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { gsap } from 'gsap';
 import { MemoryService } from '../../services/memory.service';
 import { AudioService } from '../../services/audio.service';
+import { AudioControlComponent } from '../../components/audio-control/audio-control.component';
 import { Memory } from '../../models/memory.model';
 import { MemoryDialogComponent } from '../../components/memory-dialog/memory-dialog.component';
 
@@ -18,7 +19,8 @@ import { MemoryDialogComponent } from '../../components/memory-dialog/memory-dia
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    AudioControlComponent
   ],
   templateUrl: './constellation.component.html',
   styleUrl: './constellation.component.scss'

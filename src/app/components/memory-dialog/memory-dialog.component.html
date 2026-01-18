@@ -12,16 +12,13 @@
         </div>
       }
       
-      <!-- Image with NgOptimizedImage -->
+      <!-- Image -->
       <img 
-        [ngSrc]="getThumbnailUrl()" 
+        [src]="getThumbnailUrl()" 
         [alt]="memory.title"
-        width="600"
-        height="250"
         (load)="onImageLoad()"
         (error)="onImageError()"
-        [class.loaded]="!imageLoading()"
-        priority />
+        [class.loaded]="!imageLoading()" />
       
       <div class="image-overlay">
         <div class="gallery-hint">

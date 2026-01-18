@@ -29,15 +29,8 @@
     </mat-progress-bar>
   </div>
 
-  <!-- Audio controls -->
-  <div class="audio-controls">
-    <button mat-icon-button (click)="audioService.toggle()">
-      <mat-icon>{{ audioService.isPlaying() ? 'pause' : 'play_arrow' }}</mat-icon>
-    </button>
-    <button mat-icon-button (click)="audioService.toggleMute()">
-      <mat-icon>{{ audioService.isMuted() ? 'volume_off' : 'volume_up' }}</mat-icon>
-    </button>
-  </div>
+  <!-- Audio Control Button -->
+  <app-audio-control />
 
   <!-- Canvas for constellation lines -->
   <canvas #canvas class="constellation-canvas"></canvas>
