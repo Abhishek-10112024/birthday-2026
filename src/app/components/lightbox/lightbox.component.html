@@ -1,0 +1,62 @@
+<div class="lightbox-backdrop" (click)="onBackdropClick()">
+  <div class="lightbox-modal" (click)="$event.stopPropagation()">
+    <!-- Close Button -->
+    <button class="close-button" (click)="handleClose()" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Navigation Arrows -->
+    @if (currentIndex() > 0) {
+      <button class="nav-button nav-prev" (click)="navigate(-1)" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    }
+
+    @if (currentIndex() < items().length - 1) {
+      <button class="nav-button nav-next" (click)="navigate(1)" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    }
+
+    <!-- Content -->
+    <div class="lightbox-content">
+      @if (currentItem(); as item) {
+        @if (item.caption) {
+          <div class="media-caption">
+            <p>{{ item.caption }}</p>
+          </div>
+        }
+
+        <div class="media-container">
+          @if (item.type === 'pdf') {
+            <!-- PDF Display -->
+            <iframe 
+              [src]="getPdfUrl(item.url)" 
+              class="pdf-viewer"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          } @else {
+            <!-- Image Display -->
+            <img 
+              [src]="getImageUrl(item.url)" 
+              [alt]="item.caption || 'Memory image'"
+              class="memory-image">
+          }
+        </div>
+
+        <!-- Image counter -->
+        <div class="image-counter">
+          {{ currentIndex() + 1 }} / {{ items().length }}
+        </div>
+      }
+    </div>
+  </div>
+</div>

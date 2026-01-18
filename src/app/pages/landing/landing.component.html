@@ -1,0 +1,33 @@
+<div class="landing-container">
+  <div class="stars-background">
+    @for (star of generateStars(); track star) {
+      <div class="star" 
+           [class.clickable-star]="star < 5"
+           [style.left.%]="(star * 7.3) % 100" 
+           [style.top.%]="(star * 11.7) % 100"
+           [style.animation-delay.s]="(star * 0.05) % 3"
+           (click)="onStarClick(star)">
+      </div>
+    }
+  </div>
+
+  <div class="content">
+    <h1 class="landing-title">A Journey Through Time</h1>
+    <p class="landing-subtitle">
+      Every star holds a memory.<br>
+      Every memory tells our story.
+    </p>
+    
+    <button mat-raised-button 
+            class="start-button" 
+            (click)="startJourney()">
+      <mat-icon>auto_awesome</mat-icon>
+      Begin the Journey
+    </button>
+  </div>
+
+  <div class="scroll-hint" (click)="scrollToContent()">
+    <mat-icon class="pulse">expand_more</mat-icon>
+    <span class="hint-text">Explore</span>
+  </div>
+</div>

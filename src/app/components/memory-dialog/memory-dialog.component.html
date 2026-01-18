@@ -1,0 +1,43 @@
+<div class="memory-dialog-content">
+  <button mat-icon-button class="close-button" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  @if (hasMedia()) {
+    <div class="dialog-image" (click)="openGallery(0)">
+      <img [src]="getThumbnailUrl()" [alt]="memory.title" />
+      <div class="image-overlay">
+        <div class="gallery-hint">
+          <mat-icon>photo_library</mat-icon>
+          <span>Click to view {{ getMediaCount() }} {{ getMediaCount() === 1 ? 'photo' : 'photos' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="dialog-body">
+    <div class="star-icon">
+      <mat-icon>auto_awesome</mat-icon>
+    </div>
+
+    <h2 class="dialog-title">{{ memory.title }}</h2>
+    <p class="dialog-date">{{ memory.date }}</p>
+    <p class="dialog-description">{{ memory.description }}</p>
+
+    <div class="sparkles">
+      @for (sparkle of [1,2,3,4,5]; track sparkle) {
+        <div class="sparkle" [style.animation-delay.s]="sparkle * 0.3"></div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Gallery Lightbox -->
+@if (showGallery() && memory.media) {
+  <app-lightbox 
+    [items]="memory.media"
+    [currentIndex]="currentMediaIndex()"
+    (close)="closeGallery()"
+    (indexChange)="onGalleryIndexChange($event)">
+  </app-lightbox>
+}
