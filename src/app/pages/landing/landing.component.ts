@@ -23,7 +23,7 @@ export class LandingComponent implements OnInit {
 
   // Get memories from the service instead of duplicating
   get memories(): Memory[] {
-    return this.memoryService.memories(); // Get all memories, not just first 5
+    return this.memoryService.memories().slice(0, 5); // Only show first 5 memories on landing page
   }
 
   ngOnInit(): void {
@@ -91,28 +91,13 @@ export class LandingComponent implements OnInit {
 
   // Get position for clickable stars (positioned outside content area)
   getClickableStarPosition(index: number): { x: number; y: number } {
-    // Define positions for 15 clickable stars around the edges
+    // Define positions for 5 clickable stars around the edges
     const positions = [
-      // Top row (5 stars)
-      { x: 10, y: 15 },   // Far top left
-      { x: 25, y: 10 },   // Top left
-      { x: 50, y: 8 },    // Top center
-      { x: 75, y: 10 },   // Top right
-      { x: 90, y: 15 },   // Far top right
-      
-      // Middle row (4 stars - left and right sides)
-      { x: 5, y: 35 },    // Upper middle left
-      { x: 95, y: 35 },   // Upper middle right
-      { x: 5, y: 65 },    // Lower middle left
-      { x: 95, y: 65 },   // Lower middle right
-      
-      // Bottom row (6 stars)
-      { x: 10, y: 85 },   // Far bottom left
-      { x: 25, y: 90 },   // Bottom left
-      { x: 40, y: 92 },   // Bottom left-center
-      { x: 60, y: 92 },   // Bottom right-center
-      { x: 75, y: 90 },   // Bottom right
-      { x: 90, y: 85 },   // Far bottom right
+      { x: 15, y: 20 },   // Top left
+      { x: 85, y: 25 },   // Top right
+      { x: 10, y: 70 },   // Bottom left
+      { x: 50, y: 85 },   // Bottom center
+      { x: 90, y: 75 },   // Bottom right
     ];
     
     // Return position for this memory index, or default if more memories than positions

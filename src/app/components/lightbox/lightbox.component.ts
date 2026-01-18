@@ -5,19 +5,21 @@ import {
   computed,
   inject,
   effect,
+  signal,
   ChangeDetectionStrategy,
   PLATFORM_ID,
   HostListener,
   OnDestroy
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MediaItem } from '../../models/memory.model';
 import { MemoryService } from '../../services/memory.service';
 
 @Component({
   selector: 'app-lightbox',
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage, MatProgressSpinnerModule],
   templateUrl: './lightbox.component.html',
   styleUrl: './lightbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -34,6 +36,9 @@ export class LightboxComponent implements OnDestroy {
   // Outputs
   close = output<void>();
   indexChange = output<number>();
+
+  // Loading state
+  imageLoading = signal<boolean>(true);
 
   // Current item computed
   currentItem = computed(() => {
@@ -53,6 +58,20 @@ export class LightboxComponent implements OnDestroy {
       }
       return undefined;
     });
+
+    // Reset loading state when index changes
+    effect(() => {
+      this.currentIndex(); // Track index changes
+      this.imageLoading.set(true); // Set loading to true when index changes
+    });
+  }
+
+  onImageLoad(): void {
+    this.imageLoading.set(false);
+  }
+
+  onImageError(): void {
+    this.imageLoading.set(false);
   }
 
   // Ensure body overflow is restored if the component is destroyed without close

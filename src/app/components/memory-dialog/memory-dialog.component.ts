@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { gsap } from 'gsap';
 import { Memory, MediaItem } from '../../models/memory.model';
 import { LightboxComponent } from '../lightbox/lightbox.component';
@@ -12,9 +13,11 @@ import { MemoryService } from '../../services/memory.service';
   selector: 'app-memory-dialog',
   imports: [
     CommonModule,
+    NgOptimizedImage,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     LightboxComponent
   ],
   templateUrl: './memory-dialog.component.html',
@@ -23,6 +26,7 @@ import { MemoryService } from '../../services/memory.service';
 export class MemoryDialogComponent implements OnInit {
   showGallery = signal<boolean>(false);
   currentMediaIndex = signal<number>(0);
+  imageLoading = signal<boolean>(true);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public memory: Memory,
@@ -32,6 +36,14 @@ export class MemoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.animateContent();
+  }
+
+  onImageLoad(): void {
+    this.imageLoading.set(false);
+  }
+
+  onImageError(): void {
+    this.imageLoading.set(false);
   }
 
   private animateContent(): void {

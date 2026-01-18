@@ -5,7 +5,24 @@
 
   @if (hasMedia()) {
     <div class="dialog-image" (click)="openGallery(0)">
-      <img [src]="getThumbnailUrl()" [alt]="memory.title" />
+      <!-- Loading spinner -->
+      @if (imageLoading()) {
+        <div class="image-loader">
+          <mat-spinner diameter="50"></mat-spinner>
+        </div>
+      }
+      
+      <!-- Image with NgOptimizedImage -->
+      <img 
+        [ngSrc]="getThumbnailUrl()" 
+        [alt]="memory.title"
+        width="600"
+        height="250"
+        (load)="onImageLoad()"
+        (error)="onImageError()"
+        [class.loaded]="!imageLoading()"
+        priority />
+      
       <div class="image-overlay">
         <div class="gallery-hint">
           <mat-icon>photo_library</mat-icon>

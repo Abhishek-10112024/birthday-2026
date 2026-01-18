@@ -14,25 +14,25 @@ export class MemoryService {
       description: 'The day our paths crossed and everything changed. I remember your smile lighting up the room.',
       media: [
         {
-          url: 'https://drive.google.com/file/d/1bDAlFrxrMe2slQZ6T-4B6INvNqZ6GyJu/view?usp=drive_link',
+          url: 'https://i.ibb.co/VcFPDZMR/first-date.jpg',
           type: 'image',
           caption: 'The moment we first met at the coffee shop'
         },
         {
-          url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop',
+          url: 'https://i.ibb.co/jPwvp8LJ/first-data-2.jpg',
           type: 'image',
           caption: 'Your beautiful smile that captured my heart'
         },
-        {
-          url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'The cozy corner where we talked for hours'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'That first cup of coffee together'
-        }
+        // {
+        //   url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop',
+        //   type: 'image',
+        //   caption: 'The cozy corner where we talked for hours'
+        // },
+        // {
+        //   url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop',
+        //   type: 'image',
+        //   caption: 'That first cup of coffee together'
+        // }
       ],
       x: 15,
       y: 25,
@@ -81,7 +81,8 @@ export class MemoryService {
       description: 'Walking through the park, sharing dreams and stories. The sunset was beautiful, but not as beautiful as you.',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop',
+          // url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop',
+          url:'https://drive.google.com/file/d/1WTy_cg1zQ2mx8Vdet0-OmWavBNYyCUW9/view?usp=drive_link',
           type: 'image',
           caption: 'Walking through the park hand in hand'
         },

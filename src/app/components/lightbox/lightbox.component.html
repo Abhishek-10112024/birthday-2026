@@ -44,11 +44,21 @@
               allowfullscreen>
             </iframe>
           } @else {
-            <!-- Image Display -->
+            <!-- Loading spinner for images -->
+            @if (imageLoading()) {
+              <div class="image-loader">
+                <mat-spinner diameter="60"></mat-spinner>
+              </div>
+            }
+            
+            <!-- Image Display with regular src (NgOptimizedImage doesn't work well with dynamic Drive URLs) -->
             <img 
               [src]="getImageUrl(item.url)" 
               [alt]="item.caption || 'Memory image'"
-              class="memory-image">
+              class="memory-image"
+              [class.loaded]="!imageLoading()"
+              (load)="onImageLoad()"
+              (error)="onImageError()">
           }
         </div>
 
