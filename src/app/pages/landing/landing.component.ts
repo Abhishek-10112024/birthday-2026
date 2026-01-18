@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { gsap } from 'gsap';
 import { AudioService } from '../../services/audio.service';
-import { DriveImageService } from '../../services/drive-image.service';
+import { MemoryService } from '../../services/memory.service';
 import { MemoryDialogComponent } from '../../components/memory-dialog/memory-dialog.component';
 import { Memory } from '../../models/memory.model';
 
@@ -19,78 +19,23 @@ export class LandingComponent implements OnInit {
   private router = inject(Router);
   private audioService = inject(AudioService);
   private dialog = inject(MatDialog);
-  private driveImageService = inject(DriveImageService);
+  private memoryService = inject(MemoryService);
 
-  // Dummy memory data for stars
-  private memories: Memory[] = [
-    {
-      id: 1,
-      title: 'First Day Together',
-      date: 'January 15, 2020',
-      description: 'The day we met at the coffee shop. You ordered a cappuccino with extra foam, and I knew right then that this was the beginning of something special.',
-      imageUrl: 'https://i.ibb.co/VcFPDZMR/first-date.jpg',
-      // imageUrl: 'https://drive.google.com/file/d/1bDAlFrxrMe2slQZ6T-4B6INvNqZ6GyJu/view?usp=drive_link',
-      x: 20,
-      y: 30,
-      unlocked: true
-    },
-    {
-      id: 2,
-      title: 'Beach Sunset',
-      date: 'July 4, 2020',
-      description: 'Watching the sunset at the beach, our feet in the sand, talking about our dreams and the future. The sky was painted in shades of orange and pink.',
-      imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
-      x: 45,
-      y: 25,
-      unlocked: true
-    },
-    {
-      id: 3,
-      title: 'Mountain Adventure',
-      date: 'September 12, 2020',
-      description: 'Our first hiking trip together. We reached the summit just as the sun was rising, and the view took our breath away almost as much as the climb did.',
-      imageUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
-      x: 70,
-      y: 40,
-      unlocked: true
-    },
-    {
-      id: 4,
-      title: 'Cozy Winter Night',
-      date: 'December 24, 2020',
-      description: 'Snuggled up by the fireplace, hot chocolate in hand, watching the snow fall outside. The perfect end to a perfect year.',
-      imageUrl: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&q=80',
-      x: 30,
-      y: 60,
-      unlocked: true
-    },
-    {
-      id: 5,
-      title: 'Spring Picnic',
-      date: 'April 8, 2021',
-      description: 'A spontaneous picnic in the park surrounded by blooming cherry blossoms. We laughed until our sides hurt and made plans for a thousand more adventures.',
-      imageUrl: 'https://images.unsplash.com/photo-1506260408121-e353d10b87c7?w=800&q=80',
-      x: 55,
-      y: 70,
-      unlocked: true
-    }
-  ];
+  // Get memories from the service instead of duplicating
+  get memories(): Memory[] {
+    return this.memoryService.memories(); // Get all memories, not just first 5
+  }
 
   ngOnInit(): void {
     this.animateStars();
     this.animateTitle();
-    // Convert Drive URLs to direct image URLs
-    this.memories = this.memories.map(memory => ({
-      ...memory,
-      imageUrl: memory.imageUrl ? this.driveImageService.convertDriveUrl(memory.imageUrl) : undefined
-    }));
     // Audio disabled for now - add your own audio file later
     // this.audioService.loadAudio('assets/audio/ambient.mp3');
   }
 
   private animateStars(): void {
     const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
+    stars.forEach((star) => {
       gsap.to(star, {
         opacity: Math.random() * 0.5 + 0.5,
         duration: Math.random() * 2 + 1,
@@ -128,7 +73,7 @@ export class LandingComponent implements OnInit {
 
   startJourney(): void {
     this.audioService.play();
-
+    
     gsap.to('.landing-container', {
       opacity: 0,
       scale: 1.2,
@@ -144,20 +89,52 @@ export class LandingComponent implements OnInit {
     return Array.from({ length: 100 }, (_, i) => i);
   }
 
-  onStarClick(starIndex: number): void {
-    // Map star clicks to memories (first 5 stars are clickable)
-    if (starIndex < this.memories.length) {
-      const memory = this.memories[starIndex];
+  // Get position for clickable stars (positioned outside content area)
+  getClickableStarPosition(index: number): { x: number; y: number } {
+    // Define positions for 15 clickable stars around the edges
+    const positions = [
+      // Top row (5 stars)
+      { x: 10, y: 15 },   // Far top left
+      { x: 25, y: 10 },   // Top left
+      { x: 50, y: 8 },    // Top center
+      { x: 75, y: 10 },   // Top right
+      { x: 90, y: 15 },   // Far top right
+      
+      // Middle row (4 stars - left and right sides)
+      { x: 5, y: 35 },    // Upper middle left
+      { x: 95, y: 35 },   // Upper middle right
+      { x: 5, y: 65 },    // Lower middle left
+      { x: 95, y: 65 },   // Lower middle right
+      
+      // Bottom row (6 stars)
+      { x: 10, y: 85 },   // Far bottom left
+      { x: 25, y: 90 },   // Bottom left
+      { x: 40, y: 92 },   // Bottom left-center
+      { x: 60, y: 92 },   // Bottom right-center
+      { x: 75, y: 90 },   // Bottom right
+      { x: 90, y: 85 },   // Far bottom right
+    ];
+    
+    // Return position for this memory index, or default if more memories than positions
+    return positions[index] || { x: 50, y: 50 };
+  }
 
+  onStarClick(memoryIndex: number): void {
+    // Get the memory at this index
+    if (memoryIndex < this.memories.length) {
+      const memory = this.memories[memoryIndex];
+      
       // Animate the clicked star
-      const starElement = document.querySelectorAll('.star')[starIndex];
-      gsap.to(starElement, {
-        scale: 1.5,
-        duration: 0.3,
-        yoyo: true,
-        repeat: 1,
-        ease: 'power2.inOut'
-      });
+      const clickableStars = document.querySelectorAll('.clickable-star');
+      if (clickableStars[memoryIndex]) {
+        gsap.to(clickableStars[memoryIndex], {
+          scale: 1.5,
+          duration: 0.3,
+          yoyo: true,
+          repeat: 1,
+          ease: 'power2.inOut'
+        });
+      }
 
       // Open memory dialog
       this.dialog.open(MemoryDialogComponent, {

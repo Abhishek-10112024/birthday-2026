@@ -1,12 +1,21 @@
 <div class="landing-container">
   <div class="stars-background">
+    <!-- Background decorative stars (all 100) -->
     @for (star of generateStars(); track star) {
       <div class="star" 
-           [class.clickable-star]="star < 5"
            [style.left.%]="(star * 7.3) % 100" 
            [style.top.%]="(star * 11.7) % 100"
-           [style.animation-delay.s]="(star * 0.05) % 3"
-           (click)="onStarClick(star)">
+           [style.animation-delay.s]="(star * 0.05) % 3">
+      </div>
+    }
+    
+    <!-- Clickable golden stars (one per memory, positioned outside content area) -->
+    @for (memory of memories; track memory.id; let i = $index) {
+      <div class="star clickable-star" 
+           [style.left.%]="getClickableStarPosition(i).x" 
+           [style.top.%]="getClickableStarPosition(i).y"
+           [style.animation-delay.s]="i * 0.3"
+           (click)="onStarClick(i)">
       </div>
     }
   </div>

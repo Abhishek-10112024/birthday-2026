@@ -9,8 +9,7 @@ export interface Memory {
   title: string;
   date: string;
   description: string;
-  imageUrl?: string;        // Legacy field for backward compatibility (used as thumbnail)
-  media?: MediaItem[];      // Array of media items (images/PDFs)
+  media: MediaItem[];       // Array of media items (first one is thumbnail)
   x: number; // Position on canvas (percentage)
   y: number; // Position on canvas (percentage)
   unlocked: boolean;

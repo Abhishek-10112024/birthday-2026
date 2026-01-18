@@ -91,15 +91,15 @@ export class MemoryDialogComponent implements OnInit {
   }
 
   getThumbnailUrl(): string {
-    // Use first media item as thumbnail, or fall back to imageUrl
+    // Use first media item as thumbnail
     if (this.memory.media && this.memory.media.length > 0) {
       return this.memoryService.convertDriveUrl(this.memory.media[0].url);
     }
-    return this.memory.imageUrl || '';
+    return '';
   }
 
   hasMedia(): boolean {
-    return (this.memory.media && this.memory.media.length > 0) || !!this.memory.imageUrl;
+    return this.memory.media && this.memory.media.length > 0;
   }
 
   getMediaCount(): number {
