@@ -34,8 +34,8 @@ export class MemoryService {
           caption: 'That first cup of coffee together'
         }
       ],
-      x: 20,
-      y: 30,
+      x: 15,
+      y: 25,
       unlocked: false
     },
     {
@@ -70,8 +70,8 @@ export class MemoryService {
           caption: 'Walking home together after coffee'
         }
       ],
-      x: 35,
-      y: 45,
+      x: 30,
+      y: 50,
       unlocked: false
     },
     {
@@ -97,7 +97,7 @@ export class MemoryService {
         }
       ],
       x: 50,
-      y: 25,
+      y: 20,
       unlocked: false
     },
     {
@@ -122,8 +122,8 @@ export class MemoryService {
           caption: 'Writing our story together'
         }
       ],
-      x: 65,
-      y: 55,
+      x: 70,
+      y: 30,
       unlocked: false
     },
     {
@@ -163,8 +163,8 @@ export class MemoryService {
           caption: 'Creating memories through laughter'
         }
       ],
-      x: 75,
-      y: 35,
+      x: 85,
+      y: 40,
       unlocked: false
     },
     {
@@ -189,8 +189,8 @@ export class MemoryService {
           caption: 'Everything about you is perfect'
         }
       ],
-      x: 85,
-      y: 50,
+      x: 90,
+      y: 60,
       unlocked: false
     },
     {
@@ -210,8 +210,8 @@ export class MemoryService {
           caption: 'The night sky above us'
         }
       ],
-      x: 15,
-      y: 15,
+      x: 75,
+      y: 70,
       unlocked: false
     },
     {
@@ -231,7 +231,7 @@ export class MemoryService {
           caption: 'Raindrops and smiles'
         }
       ],
-      x: 25,
+      x: 55,
       y: 75,
       unlocked: false
     },
@@ -252,8 +252,8 @@ export class MemoryService {
           caption: 'Kitchen chaos and laughter'
         }
       ],
-      x: 60,
-      y: 20,
+      x: 35,
+      y: 80,
       unlocked: false
     },
     {
@@ -273,8 +273,8 @@ export class MemoryService {
           caption: 'Scenic stops along the way'
         }
       ],
-      x: 40,
-      y: 85,
+      x: 15,
+      y: 70,
       unlocked: false
     },
     {
@@ -294,8 +294,8 @@ export class MemoryService {
           caption: 'Finding treasures'
         }
       ],
-      x: 75,
-      y: 65,
+      x: 10,
+      y: 45,
       unlocked: false
     },
     {
@@ -315,8 +315,8 @@ export class MemoryService {
           caption: 'Lights and wonder'
         }
       ],
-      x: 90,
-      y: 30,
+      x: 45,
+      y: 35,
       unlocked: false
     },
     {
@@ -336,8 +336,8 @@ export class MemoryService {
           caption: 'Celebration and joy'
         }
       ],
-      x: 10,
-      y: 70,
+      x: 60,
+      y: 55,
       unlocked: false
     },
     {
@@ -357,8 +357,8 @@ export class MemoryService {
           caption: 'Beauty everywhere'
         }
       ],
-      x: 35,
-      y: 40,
+      x: 25,
+      y: 60,
       unlocked: false
     },
     {
@@ -378,8 +378,8 @@ export class MemoryService {
           caption: 'Forever and always'
         }
       ],
-      x: 65,
-      y: 55,
+      x: 80,
+      y: 80,
       unlocked: false
     }
   ]);
@@ -401,13 +401,17 @@ export class MemoryService {
     { from: 14, to: 15 }
   ]);
 
-  unlockedCount = signal<number>(0);
+  unlockedCount = signal<number>(0); // Start with 0 unlocked
 
   unlockMemory(id: number): void {
-    this.memories.update(memories =>
-      memories.map(m => m.id === id ? { ...m, unlocked: true } : m)
-    );
-    this.unlockedCount.update(count => count + 1);
+    const memory = this.memories().find(m => m.id === id);
+    // Only unlock if not already unlocked
+    if (memory && !memory.unlocked) {
+      this.memories.update(memories =>
+        memories.map(m => m.id === id ? { ...m, unlocked: true } : m)
+      );
+      this.unlockedCount.update(count => count + 1);
+    }
   }
 
   getMemoryById(id: number): Memory | undefined {
@@ -416,6 +420,11 @@ export class MemoryService {
 
   areAllMemoriesUnlocked(): boolean {
     return this.memories().every(m => m.unlocked);
+  }
+
+  // Get the actual count of unlocked memories
+  getUnlockedCount(): number {
+    return this.memories().filter(m => m.unlocked).length;
   }
 
   // Helper method to convert Google Drive sharing URL to direct image URL

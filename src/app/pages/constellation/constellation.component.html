@@ -20,7 +20,7 @@
   <div class="progress-container">
     <div class="progress-label">
       <span>Memories Unlocked</span>
-      <span>{{ memoryService.unlockedCount() }} / {{ memoryService.memories().length }}</span>
+      <span>{{ memoryService.getUnlockedCount() }} / {{ memoryService.memories().length }}</span>
     </div>
     <mat-progress-bar 
       mode="determinate" 

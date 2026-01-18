@@ -106,11 +106,15 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   private animateStars(): void {
     const stars = document.querySelectorAll('.memory-star');
     stars.forEach((star, index) => {
+      // Set initial state
+      gsap.set(star, { scale: 1, opacity: 1 });
+      
+      // Animate from scale 0
       gsap.from(star, {
         scale: 0,
         opacity: 0,
         duration: 0.8,
-        delay: index * 0.2,
+        delay: index * 0.1,
         ease: 'back.out(1.7)'
       });
     });
@@ -204,7 +208,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
 
   getProgress(): number {
     const total = this.memoryService.memories().length;
-    const unlocked = this.memoryService.unlockedCount();
+    const unlocked = this.memoryService.getUnlockedCount();
     return (unlocked / total) * 100;
   }
 

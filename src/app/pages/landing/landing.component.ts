@@ -147,11 +147,17 @@ export class LandingComponent implements OnInit {
   }
 
   scrollToContent(): void {
-    // Smooth scroll to show more content or navigate to constellation
-    gsap.to(window, {
-      scrollTop: window.innerHeight,
+    // Navigate to constellation page
+    this.audioService.play();
+    
+    gsap.to('.landing-container', {
+      opacity: 0,
+      scale: 1.2,
       duration: 1,
-      ease: 'power2.inOut'
+      ease: 'power2.in',
+      onComplete: () => {
+        this.router.navigate(['/constellation']);
+      }
     });
   }
 }
