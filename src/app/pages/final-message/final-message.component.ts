@@ -4,10 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { gsap } from 'gsap';
 import { AudioService } from '../../services/audio.service';
+import { AudioControlComponent } from '../../components/audio-control/audio-control.component';
 
 @Component({
   selector: 'app-final-message',
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, AudioControlComponent],
   templateUrl: './final-message.component.html',
   styleUrl: './final-message.component.scss'
 })
@@ -15,6 +16,8 @@ export class FinalMessageComponent implements OnInit {
   audioService = inject(AudioService);
 
   ngOnInit(): void {
+    // Play a special completion sound
+    this.audioService.playSoundEffect('star-click');
     this.animateContent();
   }
 

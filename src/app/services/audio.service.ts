@@ -202,6 +202,26 @@ export class AudioService {
   }
 
   /**
+   * Play memory-specific audio
+   * @param audioUrl URL to the memory audio file
+   */
+  playMemoryAudio(audioUrl: string): HTMLAudioElement | null {
+    if (!this.isBrowser || this.isMuted()) return null;
+
+    try {
+      const audio = new Audio(audioUrl);
+      audio.volume = this.volume();
+      audio.play().catch(error => {
+        console.error('Error playing memory audio:', error);
+      });
+      return audio;
+    } catch (error) {
+      console.error('Error creating memory audio:', error);
+      return null;
+    }
+  }
+
+  /**
    * Stop all audio and cleanup
    */
   stopAll(): void {

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, signal } from '@angular/core';
+import { Component, Inject, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +8,7 @@ import { gsap } from 'gsap';
 import { Memory, MediaItem } from '../../models/memory.model';
 import { LightboxComponent } from '../lightbox/lightbox.component';
 import { MemoryService } from '../../services/memory.service';
+import { AudioService } from '../../services/audio.service';
 
 @Component({
   selector: 'app-memory-dialog',
@@ -26,6 +27,8 @@ export class MemoryDialogComponent implements OnInit {
   showGallery = signal<boolean>(false);
   currentMediaIndex = signal<number>(0);
   imageLoading = signal<boolean>(true);
+  private audioService = inject(AudioService);
+  private memoryAudio: HTMLAudioElement | null = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public memory: Memory,
@@ -35,6 +38,10 @@ export class MemoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.animateContent();
+    // Play memory-specific audio if available
+    if (this.memory.audioUrl) {
+      this.memoryAudio = this.audioService.playMemoryAudio(this.memory.audioUrl);
+    }
   }
 
   onImageLoad(): void {
@@ -85,19 +92,32 @@ export class MemoryDialogComponent implements OnInit {
   }
 
   close(): void {
+    // Stop memory audio if playing
+    if (this.memoryAudio) {
+      this.memoryAudio.pause();
+      this.memoryAudio = null;
+    }
+    // Play sound effect on close
+    this.audioService.playSoundEffect('star-click');
     this.dialogRef.close();
   }
 
   openGallery(startIndex: number = 0): void {
+    // Play sound effect when opening gallery
+    this.audioService.playSoundEffect('star-click');
     this.currentMediaIndex.set(startIndex);
     this.showGallery.set(true);
   }
 
   closeGallery(): void {
+    // Play sound effect when closing gallery
+    this.audioService.playSoundEffect('star-click');
     this.showGallery.set(false);
   }
 
   onGalleryIndexChange(newIndex: number): void {
+    // Play sound effect when navigating gallery
+    this.audioService.playSoundEffect('star-click');
     this.currentMediaIndex.set(newIndex);
   }
 

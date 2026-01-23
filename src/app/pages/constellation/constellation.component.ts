@@ -123,6 +123,9 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   onStarClick(memory: Memory): void {
+    // Play star click sound
+    this.audioService.playSoundEffect('star-click');
+    
     if (!memory.unlocked) {
       this.memoryService.unlockMemory(memory.id);
       this.animateUnlock(memory);
@@ -185,15 +188,26 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private openMemoryDialog(memory: Memory): void {
-    this.dialog.open(MemoryDialogComponent, {
+    // Fade out background music when opening dialog
+    this.audioService.fadeOutBackground(500);
+    
+    const dialogRef = this.dialog.open(MemoryDialogComponent, {
       data: memory,
       width: '90vw',
       maxWidth: '600px',
       panelClass: 'memory-dialog'
     });
+    
+    // Fade in background music when dialog closes
+    dialogRef.afterClosed().subscribe(() => {
+      this.audioService.fadeInBackground(500);
+    });
   }
 
   private showFinalMessage(): void {
+    // Play completion sound effect
+    this.audioService.playSoundEffect('star-click');
+    
     gsap.to('.constellation-container', {
       opacity: 0,
       duration: 1.5,
