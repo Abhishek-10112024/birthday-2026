@@ -6,23 +6,30 @@ import { SupabaseService } from './supabase.service';
   providedIn: 'root'
 })
 export class MemoryService {
+  private readonly STORAGE_KEY = 'constellation_unlocked_memories';
+
+  constructor() {
+    // Load unlocked state from localStorage on initialization
+    this.loadUnlockedState();
+  }
+
   // Signal-based state management
   memories = signal<Memory[]>([
     {
       id: 1,
       title: 'First Meeting',
       date: 'January 2024',
-      description: 'The day our paths crossed and everything changed. I remember your smile lighting up the room.',
+      description: 'Our first date, meri pehli kiss kitni buri thi, lekin uske baad hi doosri 😍😍😍',
       media: [
         {
           url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20date.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRlLmpwZyIsImlhdCI6MTc2ODc0Nzk1MiwiZXhwIjoxODMxODE5OTUyfQ.O3ZyMuILfInr1wWnNAEcESyFcRWjooI2fcb3xrkubb8',
           type: 'image',
-          caption: 'The moment we first met at the coffee shop'
+          caption: 'If I look back and remember then meri life ka one of the best day tha'
         },
         {
           url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20data%20-2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRhIC0yLmpwZyIsImlhdCI6MTc2ODc0ODA4OSwiZXhwIjoxODMxODIwMDg5fQ.IKsZxTjhE1VQYvRhbaP1JVasrQPsa1mBMabcbghpYss',
           type: 'image',
-          caption: 'Your beautiful smile that captured my heart'
+          caption: 'Tumhe shayad ye photo buri lage, lekin mere liye bahut achhi hai. Love your smile 😍😍😍'
         },
       ],
       x: 15,
@@ -395,6 +402,37 @@ export class MemoryService {
 
   unlockedCount = signal<number>(0); // Start with 0 unlocked
 
+  // Load unlocked state from localStorage
+  private loadUnlockedState(): void {
+    try {
+      const stored = localStorage.getItem(this.STORAGE_KEY);
+      if (stored) {
+        const unlockedIds: number[] = JSON.parse(stored);
+        this.memories.update(memories =>
+          memories.map(m => ({
+            ...m,
+            unlocked: unlockedIds.includes(m.id)
+          }))
+        );
+        this.unlockedCount.set(unlockedIds.length);
+      }
+    } catch (error) {
+      console.error('Error loading unlocked state from localStorage:', error);
+    }
+  }
+
+  // Save unlocked state to localStorage
+  private saveUnlockedState(): void {
+    try {
+      const unlockedIds = this.memories()
+        .filter(m => m.unlocked)
+        .map(m => m.id);
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(unlockedIds));
+    } catch (error) {
+      console.error('Error saving unlocked state to localStorage:', error);
+    }
+  }
+
   unlockMemory(id: number): void {
     const memory = this.memories().find(m => m.id === id);
     // Only unlock if not already unlocked
@@ -403,6 +441,7 @@ export class MemoryService {
         memories.map(m => m.id === id ? { ...m, unlocked: true } : m)
       );
       this.unlockedCount.update(count => count + 1);
+      this.saveUnlockedState(); // Save to localStorage
     }
   }
 

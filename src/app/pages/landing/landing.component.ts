@@ -141,6 +141,9 @@ export class LandingComponent implements OnInit {
     if (memoryIndex < this.memories.length) {
       const memory = this.memories[memoryIndex];
       
+      // Unlock the memory (will be saved to localStorage)
+      this.memoryService.unlockMemory(memory.id);
+      
       // Play star click sound effect
       this.audioService.playSoundEffect('star-click');
       
