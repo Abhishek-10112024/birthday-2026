@@ -27,6 +27,11 @@ $theme: mat.define-theme((
   box-sizing: border-box;
 }
 
+// Fix for mobile viewport height (accounts for browser UI)
+:root {
+  --vh: 1vh;
+}
+
 html, body {
   min-height: 100%;
   width: 100%;
