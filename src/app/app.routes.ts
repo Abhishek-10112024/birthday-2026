@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { memoriesUnlockedGuard } from './guards/memories-unlocked.guard';
 
 export const routes: Routes = [
   {
@@ -19,7 +20,7 @@ export const routes: Routes = [
   {
     path: 'final-message',
     loadComponent: () => import('./pages/final-message/final-message.component').then(m => m.FinalMessageComponent),
-    canActivate: [authGuard]
+    canActivate: [authGuard, memoriesUnlockedGuard]
   },
   {
     path: '**',
