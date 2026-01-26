@@ -474,14 +474,25 @@ export class MemoryService {
 
   unlockMemory(id: number): void {
     const memory = this.memories().find(m => m.id === id);
-    // Only unlock if not already unlocked
-    if (memory && !memory.unlocked) {
+    // Only unlock if not already unlocked AND if it can be unlocked (sequential order)
+    if (memory && !memory.unlocked && this.canUnlockMemory(id)) {
       this.memories.update(memories =>
         memories.map(m => m.id === id ? { ...m, unlocked: true } : m)
       );
       this.unlockedCount.update(count => count + 1);
       this.saveUnlockedState(); // Save to localStorage
+      return;
     }
+  }
+
+  // Check if a memory can be unlocked (sequential order)
+  canUnlockMemory(id: number): boolean {
+    // Memory 1 can always be unlocked
+    if (id === 1) return true;
+    
+    // For other memories, check if the previous memory is unlocked
+    const previousMemory = this.memories().find(m => m.id === id - 1);
+    return previousMemory?.unlocked === true;
   }
 
   getMemoryById(id: number): Memory | undefined {

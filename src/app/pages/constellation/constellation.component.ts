@@ -123,6 +123,23 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   onStarClick(memory: Memory): void {
+    // Check if this memory can be unlocked (sequential order)
+    if (!memory.unlocked && !this.memoryService.canUnlockMemory(memory.id)) {
+      // Show feedback that this memory is locked
+      const starElement = document.querySelector(`[data-memory-id="${memory.id}"]`);
+      if (starElement) {
+        // Shake animation for locked star
+        gsap.to(starElement, {
+          x: -10,
+          duration: 0.1,
+          yoyo: true,
+          repeat: 5,
+          ease: 'power2.inOut'
+        });
+      }
+      return; // Don't unlock or open dialog for locked memories
+    }
+    
     // Play star click sound
     this.audioService.playSoundEffect('star-click');
     

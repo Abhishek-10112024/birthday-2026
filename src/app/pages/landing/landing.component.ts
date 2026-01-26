@@ -141,6 +141,23 @@ export class LandingComponent implements OnInit {
     if (memoryIndex < this.memories.length) {
       const memory = this.memories[memoryIndex];
       
+      // Check if this memory can be unlocked (sequential order)
+      if (!this.memoryService.canUnlockMemory(memory.id)) {
+        // Show feedback that this memory is locked
+        const clickableStars = document.querySelectorAll('.clickable-star');
+        if (clickableStars[memoryIndex]) {
+          // Shake animation for locked star
+          gsap.to(clickableStars[memoryIndex], {
+            x: -10,
+            duration: 0.1,
+            yoyo: true,
+            repeat: 5,
+            ease: 'power2.inOut'
+          });
+        }
+        return; // Don't open dialog for locked memories
+      }
+      
       // Unlock the memory (will be saved to localStorage)
       this.memoryService.unlockMemory(memory.id);
       

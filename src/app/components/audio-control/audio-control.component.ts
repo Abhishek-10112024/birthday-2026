@@ -18,6 +18,9 @@ import { AudioService } from '../../services/audio.service';
   `,
   styles: [`
     .audio-control-button {
+      display: flex;
+      justify-content: center;    
+      align-items: center;
       position: fixed;
       top: 20px;
       right: 20px;

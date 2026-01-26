@@ -2,14 +2,6 @@
   <!-- Audio Control Button -->
   <app-audio-control />
   
-  <!-- Audio Hint -->
-  @if (showAudioHint) {
-    <div class="audio-hint">
-      <mat-icon>volume_up</mat-icon>
-      <span>Click anywhere to enable sound</span>
-    </div>
-  }
-  
   <div class="stars-background">
     <!-- Background decorative stars (all 100) -->
     @for (star of generateStars(); track star) {
