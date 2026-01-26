@@ -167,17 +167,10 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
       this.drawConstellation();
       
       setTimeout(() => {
-        this.openMemoryDialog(memory);
+        this.openMemoryDialog(memory, true); // Pass flag to check completion after dialog closes
       }, 500);
-
-      // Check if all memories are unlocked
-      if (this.memoryService.areAllMemoriesUnlocked()) {
-        setTimeout(() => {
-          this.showFinalMessage();
-        }, 2000);
-      }
     } else {
-      this.openMemoryDialog(memory);
+      this.openMemoryDialog(memory, true); // Also check when clicking already unlocked memory
     }
   }
 
@@ -222,9 +215,9 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private openMemoryDialog(memory: Memory): void {
-    // Fade out background music when opening dialog
-    this.audioService.fadeOutBackground(500);
+  private openMemoryDialog(memory: Memory, checkCompletion: boolean = false): void {
+    // Lower background music volume when opening dialog
+    this.audioService.lowerVolume(0.1);
     
     const dialogRef = this.dialog.open(MemoryDialogComponent, {
       data: memory,
@@ -233,9 +226,21 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
       panelClass: 'memory-dialog'
     });
     
-    // Fade in background music when dialog closes
+    // Restore background music volume when dialog closes
     dialogRef.afterClosed().subscribe(() => {
-      this.audioService.fadeInBackground(500);
+      this.audioService.restoreVolume();
+      
+      // Check if all memories are unlocked after dialog closes
+      if (checkCompletion) {
+        const allUnlocked = this.memoryService.areAllMemoriesUnlocked();
+        const unlockedCount = this.memoryService.getUnlockedCount();
+        const totalCount = this.memoryService.memories().length;
+        console.log(`Unlocked: ${unlockedCount}/${totalCount}, All unlocked: ${allUnlocked}`);
+        
+        if (allUnlocked) {
+          this.showFinalMessage();
+        }
+      }
     });
   }
 
@@ -243,16 +248,20 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Play completion sound effect
     this.audioService.playSoundEffect('star-click');
     
-    const container = this.canvasRef.nativeElement.parentElement?.querySelector('.constellation-container');
+    // The canvas parent IS the constellation-container
+    const container = this.canvasRef.nativeElement.parentElement;
     if (container) {
       gsap.to(container, {
         opacity: 0,
-        duration: 1.5,
+        duration: 0.8,
         ease: 'power2.in',
         onComplete: () => {
           this.router.navigate(['/final-message']);
         }
       });
+    } else {
+      // Fallback: navigate directly if container not found
+      this.router.navigate(['/final-message']);
     }
   }
 

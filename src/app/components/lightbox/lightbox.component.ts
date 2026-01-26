@@ -16,6 +16,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MediaItem } from '../../models/memory.model';
 import { MemoryService } from '../../services/memory.service';
+import { AudioService } from '../../services/audio.service';
 
 @Component({
   selector: 'app-lightbox',
@@ -28,6 +29,7 @@ export class LightboxComponent implements OnDestroy {
   private memoryService = inject(MemoryService);
   private sanitizer = inject(DomSanitizer);
   private platformId = inject(PLATFORM_ID);
+  private audioService = inject(AudioService);
 
   // Inputs
   items = input.required<MediaItem[]>();
@@ -82,7 +84,17 @@ export class LightboxComponent implements OnDestroy {
     this.videoElement = event.target as HTMLVideoElement;
   }
 
-  onTouchStart(event: TouchEvent, side: 'left' | 'right'): void {
+  onVideoPlay(): void {
+    // Lower background music to 10% when video plays
+    this.audioService.lowerVolume(0.2);
+  }
+
+  onVideoPause(): void {
+    // Restore background music volume when video pauses or ends
+    this.audioService.restoreVolume();
+  }
+
+  onTouchStart(event: TouchEvent): void {
     if (this.videoElement && this.currentItem()?.type === 'video') {
       event.preventDefault(); // Prevent default tap behavior on speed zones
       event.stopPropagation();

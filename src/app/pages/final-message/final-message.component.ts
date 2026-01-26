@@ -22,6 +22,11 @@ export class FinalMessageComponent implements OnInit {
   photoLoading = signal(true);
 
   ngOnInit(): void {
+    // Ensure background music is playing
+    if (!this.audioService.isPlaying()) {
+      this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
+    }
+    
     // Play a special completion sound
     this.audioService.playSoundEffect('star-click');
     this.animateContent();

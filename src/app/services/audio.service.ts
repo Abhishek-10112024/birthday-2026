@@ -153,6 +153,27 @@ export class AudioService {
   }
 
   /**
+   * Lower background volume (for when dialog is open)
+   * @param percentage Percentage to lower (e.g., 0.1 for 10%)
+   */
+  lowerVolume(percentage: number = 0.1): void {
+    if (!this.backgroundAudio || this.isMuted()) return;
+    
+    const currentVolume = this.volume();
+    const newVolume = Math.max(0, currentVolume - percentage);
+    this.backgroundAudio.volume = newVolume;
+  }
+
+  /**
+   * Restore background volume to normal
+   */
+  restoreVolume(): void {
+    if (!this.backgroundAudio || this.isMuted()) return;
+    
+    this.backgroundAudio.volume = this.volume();
+  }
+
+  /**
    * Toggle mute on/off
    */
   toggleMute(): void {

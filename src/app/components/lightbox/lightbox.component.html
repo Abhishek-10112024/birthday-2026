@@ -47,11 +47,11 @@
             <!-- Touch zones for 2x speed on mobile -->
             <div class="speed-control-zones">
               <div class="speed-zone speed-zone-left" 
-                   (touchstart)="onTouchStart($event, 'left')"
+                   (touchstart)="onTouchStart($event)"
                    (touchend)="onTouchEnd()">
               </div>
               <div class="speed-zone speed-zone-right" 
-                   (touchstart)="onTouchStart($event, 'right')"
+                   (touchstart)="onTouchStart($event)"
                    (touchend)="onTouchEnd()">
               </div>
             </div>
@@ -67,7 +67,10 @@
               class="memory-video"
               controls
               preload="metadata"
-              (loadedmetadata)="onVideoLoaded($event)">
+              (loadedmetadata)="onVideoLoaded($event)"
+              (play)="onVideoPlay()"
+              (pause)="onVideoPause()"
+              (ended)="onVideoPause()">
               Your browser does not support the video tag.
             </video>
           } @else {

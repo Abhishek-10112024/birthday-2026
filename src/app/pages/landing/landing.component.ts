@@ -42,14 +42,14 @@ export class LandingComponent implements OnInit {
   private initBackgroundMusic(): void {
     // Try to play background music
     // Note: Modern browsers require user interaction before playing audio
-    this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+    this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
   }
 
   private setupAudioInteraction(): void {
     // Listen for any click on the page to start audio
     const startAudio = () => {
       if (!this.audioService.isPlaying()) {
-        this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+        this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
       }
       // Hide the audio hint
       this.showAudioHint = false;
@@ -113,7 +113,7 @@ export class LandingComponent implements OnInit {
     
     // Ensure background music is playing (user interaction allows autoplay)
     if (!this.audioService.isPlaying()) {
-      this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+      this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
     }
     
     const container = this.elementRef.nativeElement.querySelector('.landing-container');
@@ -189,8 +189,8 @@ export class LandingComponent implements OnInit {
         });
       }
 
-      // Fade out background music when opening dialog
-      this.audioService.fadeOutBackground(500);
+      // Lower background music volume when opening dialog
+      this.audioService.lowerVolume(0.1);
 
       // Open memory dialog
       const dialogRef = this.dialog.open(MemoryDialogComponent, {
@@ -200,9 +200,9 @@ export class LandingComponent implements OnInit {
         panelClass: 'memory-dialog-panel'
       });
 
-      // Fade in background music when dialog closes
+      // Restore background music volume when dialog closes
       dialogRef.afterClosed().subscribe(() => {
-        this.audioService.fadeInBackground(500);
+        this.audioService.restoreVolume();
       });
     }
   }
@@ -213,7 +213,7 @@ export class LandingComponent implements OnInit {
     
     // Ensure background music is playing
     if (!this.audioService.isPlaying()) {
-      this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
+      this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
     }
     
     const container = this.elementRef.nativeElement.querySelector('.landing-container');
