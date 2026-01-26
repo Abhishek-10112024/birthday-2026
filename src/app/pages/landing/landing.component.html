@@ -15,6 +15,7 @@
     <!-- Clickable golden stars (one per memory, positioned outside content area) -->
     @for (memory of memories; track memory.id; let i = $index) {
       <div class="clickable-star" 
+           [class.unlocked]="memory.unlocked"
            [style.left.%]="getClickableStarPosition(i).x" 
            [style.top.%]="getClickableStarPosition(i).y"
            [style.animation-delay.s]="i * 0.3"

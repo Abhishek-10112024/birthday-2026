@@ -66,19 +66,25 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Clear canvas
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw lines between unlocked memories
-    this.ctx.strokeStyle = 'rgba(168, 192, 255, 0.3)';
+    // Draw lines between all memories
     this.ctx.lineWidth = 2;
 
     lines.forEach(line => {
       const fromMemory = memories.find(m => m.id === line.from);
       const toMemory = memories.find(m => m.id === line.to);
 
-      if (fromMemory?.unlocked && toMemory?.unlocked) {
+      if (fromMemory && toMemory) {
         const fromX = (fromMemory.x / 100) * canvas.width;
         const fromY = (fromMemory.y / 100) * canvas.height;
         const toX = (toMemory.x / 100) * canvas.width;
         const toY = (toMemory.y / 100) * canvas.height;
+
+        // Brighter line if both memories are unlocked, dimmer if not
+        if (fromMemory.unlocked && toMemory.unlocked) {
+          this.ctx.strokeStyle = 'rgba(168, 192, 255, 0.5)';
+        } else {
+          this.ctx.strokeStyle = 'rgba(168, 192, 255, 0.15)';
+        }
 
         this.ctx.beginPath();
         this.ctx.moveTo(fromX, fromY);

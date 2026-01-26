@@ -40,13 +40,13 @@
 
 .clickable-star {
   position: absolute !important;
-  color: #ffd700 !important;
-  font-size: 18px !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 16px !important;
   line-height: 1 !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
   z-index: 100 !important;
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 215, 0, 0.4) !important;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
   animation: twinkle 3s infinite !important;
   user-select: none !important;
   pointer-events: auto !important;
@@ -54,9 +54,16 @@
   width: auto !important;
   height: auto !important;
 
+  &.unlocked {
+    color: #ffd700 !important;
+    font-size: 22px !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5) !important;
+  }
+
   &:hover {
     font-size: 24px !important;
     text-shadow: 0 0 15px rgba(255, 215, 0, 1), 0 0 25px rgba(255, 215, 0, 0.6) !important;
+    color: #ffd700 !important;
     animation: none !important;
     transform: scale(1.2) !important;
   }

@@ -141,7 +141,7 @@ export class LandingComponent implements OnInit {
       { x: 15, y: 20 },   // Top left
       { x: 85, y: 25 },   // Top right
       { x: 10, y: 70 },   // Bottom left
-      { x: 50, y: 85 },   // Bottom center
+      { x: 50, y: 72 },   // Bottom center (moved up from 85)
       { x: 90, y: 75 },   // Bottom right
     ];
     
