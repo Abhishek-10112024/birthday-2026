@@ -83,14 +83,21 @@
 .final-constellation {
   margin: 0 auto 3rem;
   max-width: 300px;
+  position: relative;
 
-  .constellation-svg {
+  .heart-photo-svg {
     width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 20px rgba(168, 192, 255, 0.5));
+    filter: drop-shadow(0 0 30px rgba(168, 192, 255, 0.6));
   }
 
-  .heart-path {
+  .heart-image {
+    transition: opacity 0.5s ease-in-out;
+    transform: scale(0.7);
+    transform-origin: center;
+  }
+
+  .heart-border {
     stroke-dasharray: 500;
     stroke-dashoffset: 500;
     animation: draw-heart 3s ease-out forwards;
@@ -98,6 +105,14 @@
 
   .star-point {
     animation: pulse-star 2s infinite;
+  }
+
+  .photo-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
   }
 }
 
