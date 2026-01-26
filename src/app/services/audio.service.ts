@@ -1,11 +1,12 @@
 import { Injectable, signal, PLATFORM_ID, inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AudioService {
   private platformId = inject(PLATFORM_ID);
+  private document = inject(DOCUMENT);
   private backgroundAudio: HTMLAudioElement | null = null;
   private isBrowser: boolean;
   private wasPlayingBeforeHidden = false;
@@ -35,8 +36,8 @@ export class AudioService {
    * Setup listener for tab visibility changes
    */
   private setupVisibilityListener(): void {
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
+    this.document.addEventListener('visibilitychange', () => {
+      if (this.document.hidden) {
         // Tab is hidden - pause audio if playing
         if (this.isPlaying() && !this.isMuted()) {
           this.wasPlayingBeforeHidden = true;
