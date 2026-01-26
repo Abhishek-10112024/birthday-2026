@@ -33,24 +33,45 @@ export class AudioService {
   }
 
   /**
-   * Setup listener for tab visibility changes
+   * Setup listener for tab visibility changes and window focus
    */
   private setupVisibilityListener(): void {
+    // Handle tab visibility changes (tab switch, minimize)
     this.document.addEventListener('visibilitychange', () => {
       if (this.document.hidden) {
-        // Tab is hidden - pause audio if playing
-        if (this.isPlaying() && !this.isMuted()) {
-          this.wasPlayingBeforeHidden = true;
-          this.pauseBackgroundMusic();
-        }
+        this.handleHidden();
       } else {
-        // Tab is visible again - resume if was playing before
-        if (this.wasPlayingBeforeHidden && !this.isMuted()) {
-          this.resumeBackgroundMusic();
-          this.wasPlayingBeforeHidden = false;
-        }
+        this.handleVisible();
       }
     });
+
+    // Handle window blur/focus (switching apps on PC)
+    const win = this.document.defaultView;
+    if (win) {
+      win.addEventListener('blur', () => {
+        this.handleHidden();
+      });
+
+      win.addEventListener('focus', () => {
+        this.handleVisible();
+      });
+    }
+  }
+
+  private handleHidden(): void {
+    // Pause audio if playing
+    if (this.isPlaying() && !this.isMuted() && !this.wasPlayingBeforeHidden) {
+      this.wasPlayingBeforeHidden = true;
+      this.pauseBackgroundMusic();
+    }
+  }
+
+  private handleVisible(): void {
+    // Resume if was playing before
+    if (this.wasPlayingBeforeHidden && !this.isMuted()) {
+      this.resumeBackgroundMusic();
+      this.wasPlayingBeforeHidden = false;
+    }
   }
 
   /**
