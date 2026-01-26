@@ -43,6 +43,33 @@
               frameborder="0"
               allowfullscreen>
             </iframe>
+          } @else if (item.type === 'video') {
+            <!-- Touch zones for 2x speed on mobile -->
+            <div class="speed-control-zones">
+              <div class="speed-zone speed-zone-left" 
+                   (touchstart)="onTouchStart($event, 'left')"
+                   (touchend)="onTouchEnd()">
+              </div>
+              <div class="speed-zone speed-zone-right" 
+                   (touchstart)="onTouchStart($event, 'right')"
+                   (touchend)="onTouchEnd()">
+              </div>
+            </div>
+            
+            <!-- Speed indicator -->
+            @if (isSpeedingUp()) {
+              <div class="speed-indicator">2x</div>
+            }
+            
+            <!-- Video Display -->
+            <video 
+              [src]="item.url" 
+              class="memory-video"
+              controls
+              preload="metadata"
+              (loadedmetadata)="onVideoLoaded($event)">
+              Your browser does not support the video tag.
+            </video>
           } @else {
             <!-- Loading spinner for images -->
             @if (imageLoading()) {

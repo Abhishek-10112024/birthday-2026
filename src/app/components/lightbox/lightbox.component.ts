@@ -39,6 +39,10 @@ export class LightboxComponent implements OnDestroy {
 
   // Loading state
   imageLoading = signal<boolean>(true);
+  
+  // Video playback speed control
+  isSpeedingUp = signal<boolean>(false);
+  private videoElement: HTMLVideoElement | null = null;
 
   // Current item computed
   currentItem = computed(() => {
@@ -72,6 +76,26 @@ export class LightboxComponent implements OnDestroy {
 
   onImageError(): void {
     this.imageLoading.set(false);
+  }
+
+  onVideoLoaded(event: Event): void {
+    this.videoElement = event.target as HTMLVideoElement;
+  }
+
+  onTouchStart(event: TouchEvent, side: 'left' | 'right'): void {
+    if (this.videoElement && this.currentItem()?.type === 'video') {
+      event.preventDefault(); // Prevent default tap behavior on speed zones
+      event.stopPropagation();
+      this.isSpeedingUp.set(true);
+      this.videoElement.playbackRate = 2.0;
+    }
+  }
+
+  onTouchEnd(): void {
+    if (this.videoElement && this.currentItem()?.type === 'video') {
+      this.isSpeedingUp.set(false);
+      this.videoElement.playbackRate = 1.0;
+    }
   }
 
   // Ensure body overflow is restored if the component is destroyed without close

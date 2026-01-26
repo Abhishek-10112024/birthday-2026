@@ -83,4 +83,12 @@ export class FinalMessageComponent implements OnInit {
   generateHearts(): number[] {
     return Array.from({ length: 20 }, (_, i) => i);
   }
+
+  openWhatsApp(): void {
+    // Replace with your WhatsApp number (include country code without + or spaces)
+    const phoneNumber = '9479308616'; // Update this with actual number
+    const message = encodeURIComponent('Hi! I just finished exploring the constellation of memories. ✨');
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  }
 }

@@ -1,13 +1,13 @@
 export interface MediaItem {
-  url: string;              // Google Drive URL or regular URL
-  type: 'image' | 'pdf';    // Media type
+  url: string;              // URL for image, video, or PDF
+  type: 'image' | 'video' | 'pdf';    // Media type
   caption?: string;         // Optional caption for the media
 }
 
 export interface Memory {
   id: number;
   title: string;
-  date: string;
+  date?: string;
   description: string;
   media: MediaItem[];       // Array of media items (first one is thumbnail)
   audioUrl?: string;        // Optional audio file for this memory

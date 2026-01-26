@@ -17,14 +17,18 @@ export class MemoryService {
   memories = signal<Memory[]>([
     {
       id: 1,
-      title: 'First Meeting',
-      date: 'January 2024',
+      title: 'First Date',
       description: 'Our first date, meri pehli kiss kitni buri thi, lekin uske baad hi doosri 😍😍😍',
       media: [
         {
           url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20date.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRlLmpwZyIsImlhdCI6MTc2ODc0Nzk1MiwiZXhwIjoxODMxODE5OTUyfQ.O3ZyMuILfInr1wWnNAEcESyFcRWjooI2fcb3xrkubb8',
           type: 'image',
           caption: 'If I look back and remember then meri life ka one of the best day tha'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20data%20-2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRhIC0yLmpwZyIsImlhdCI6MTc2ODc0ODA4OSwiZXhwIjoxODMxODIwMDg5fQ.IKsZxTjhE1VQYvRhbaP1JVasrQPsa1mBMabcbghpYss',
+          type: 'image',
+          caption: 'Tumhe shayad ye photo buri lage, lekin mere liye bahut achhi hai. Love your smile 😍😍😍'
         },
         {
           url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20data%20-2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRhIC0yLmpwZyIsImlhdCI6MTc2ODc0ODA4OSwiZXhwIjoxODMxODIwMDg5fQ.IKsZxTjhE1VQYvRhbaP1JVasrQPsa1mBMabcbghpYss',
@@ -38,34 +42,57 @@ export class MemoryService {
     },
     {
       id: 2,
-      title: 'Coffee Date Adventures',
-      date: 'February 2024',
-      description: 'Our first coffee together. You ordered that complicated drink and we talked for hours. Every moment was magical.',
+      title: 'Dumna Adventures',
+      description: 'Brownie par gaye the na Dumna? Mujhe to esa hi yaad hai',
       media: [
         {
-          url: 'https://drive.google.com/file/d/1xZwof_AiRI8sp-5FclnV6_q0JcIvofPf/view?usp=drive_link',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_1_2026-01-24_00-01-49.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18xXzIwMjYtMDEtMjRfMDAtMDEtNDkuanBnIiwiaWF0IjoxNzY5MTkzMjA0LCJleHAiOjE4MzIyNjUyMDR9.qh08VyeKFIkr1dMmWf6ESsP5Rzz4rw6P4g64Fzc-P4o',
           type: 'image',
-          caption: 'Our favorite coffee shop (Google Drive)'
+          caption: 'Kitni pyari shakal hai... 😘😘😘'
         },
         {
-          url: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.00.45%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAwLjQ1ICgxKS5qcGVnIiwiaWF0IjoxNzY5MTkzMzE3LCJleHAiOjE4MzgzMTMzMTd9.1cuzWNGgyRMwast69G3gVQYhSLsz4wztnwF3FNRfQf4',
           type: 'image',
-          caption: 'That complicated drink you ordered'
+          caption: 'Chhoti Bhiyus 💕💕💕'
         },
         {
-          url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.00.45.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAwLjQ1LmpwZWciLCJpYXQiOjE3NjkxOTMzMzcsImV4cCI6MTgwMDcyOTMzN30.fxjaPawkrGaL35bCwpfwJHNWIMXvzgm_K2x_zy6T-bc',
           type: 'image',
-          caption: 'Hours of conversation over coffee'
+          caption: 'Lamba lagne ki poori koshish...'
         },
         {
-          url: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.01.04.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAxLjA0LmpwZWciLCJpYXQiOjE3NjkxOTMzNDcsImV4cCI6MTgwMDcyOTM0N30.I2-unaUCC05mqtyoxnaW12jvXUdWa2JLD2uiQVFe1VU',
           type: 'image',
-          caption: 'The barista who knew our order by heart'
+          caption: 'Naak to tedi thi hi, pet pe hath rakh ke use bhi teda kar rahi'
         },
         {
-          url: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.01.05.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAxLjA1LmpwZWciLCJpYXQiOjE3NjkxOTMzNjIsImV4cCI6MTgwMDcyOTM2Mn0.Fe_1LH-eOJzWLILk0b5hOeMv1lV9em7dXdlWkf2H9vE',
           type: 'image',
-          caption: 'Walking home together after coffee'
+          caption: 'Zero pose and dressing sense hai mujhe 😂😂😂'
+        }, {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.56%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjU2ICgyKS5qcGVnIiwiaWF0IjoxNzY5MTkzNDQ1LCJleHAiOjE4MDA3Mjk0NDV9.PNHY_qVAAtBW4PR_XKp1kcY-ACwJLmh3Ig-3nIiJnlo',
+          type: 'image',
+          caption: 'Cute couple 💕'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.34.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjM0LmpwZWciLCJpYXQiOjE3NjkxOTM5OTYsImV4cCI6MTgwMDcyOTk5Nn0.Ijw6jqxjeLv0RR5V_2qKa3lv8O8u5wDOiNZxlSG0Ut0',
+          type: 'image',
+          caption: 'Dancer bhiyus'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.33%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjMzICgyKS5qcGVnIiwiaWF0IjoxNzY5MTk0MTM3LCJleHAiOjE4MDA3MzAxMzd9.E6bGG5XInAQXkV4ZKipGl-fd4lGz8XQpDiu6rRl9n60',
+          type: 'image',
+          caption: '₹700/- ki dress ka show off karte hui stree'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.32.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjMyLmpwZWciLCJpYXQiOjE3NjkxOTQyNDQsImV4cCI6MTgwMDczMDI0NH0.AmU3sTNVXoHEu_DXRYuTWeL3qW_Sv-B5vfMz6N1EM6M',
+          type: 'image',
+          caption: 'Ek photo bina chashme ke bhi'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.32%20(3).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjMyICgzKS5qcGVnIiwiaWF0IjoxNzY5MTk0MjgzLCJleHAiOjE4MDA3MzAyODN9.vO25aWAAfCdoEyfWyCbbj3Je54wPsbkiZoNNa3BUKEU',
+          type: 'image',
+          caption: 'Haaye sundarta, jungle ke janwar bhi dekh ke sharma jaaye 🙈🙈🙈'
         }
       ],
       x: 30,
@@ -74,25 +101,23 @@ export class MemoryService {
     },
     {
       id: 3,
-      title: 'The Park Walk',
-      date: 'March 2024',
-      description: 'Walking through the park, sharing dreams and stories. The sunset was beautiful, but not as beautiful as you.',
+      title: 'A Random Day',
+      description: 'Esi random photos dekh ke samjh aa raha hai ki photos kyu delete nahi karti thi tum',
       media: [
         {
-          // url: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop',
-          url:'https://drive.google.com/file/d/1WTy_cg1zQ2mx8Vdet0-OmWavBNYyCUW9/view?usp=drive_link',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.00.06%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAwLjA2ICgxKS5qcGVnIiwiaWF0IjoxNzY5MTk0OTkyLCJleHAiOjE4MDA3MzA5OTJ9.DyAFZm9BD2ix8IwRzjnFqP6WDBG7ucjAksPCDQCkRn0',
           type: 'image',
-          caption: 'Walking through the park hand in hand'
+          caption: 'Esi jeev abhi bhi bahar nikalta hu, aur ab to pehle se bhi jyada, tum hi theek kar sakti ho ye aadat ab'
         },
         {
-          url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.00.06%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAwLjA2ICgyKS5qcGVnIiwiaWF0IjoxNzY5MTk1MTUzLCJleHAiOjE4MDA3MzExNTN9.Uu9NpprB0mARSY3FM4IqJCc66R0uDMjPdNFpZkEScc8',
           type: 'image',
-          caption: 'The beautiful sunset we watched together'
+          caption: 'No Comments 🤤🤤🤤'
         },
         {
-          url: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.00.06.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAwLjA2LmpwZWciLCJpYXQiOjE3NjkxOTUyMTgsImV4cCI6MTgwMDczMTIxOH0.yE6pjXHIxrBpzzCVDGFOQCITrM8wPnlaVZ4aCtUtcg8',
           type: 'image',
-          caption: 'Sharing dreams under the trees'
+          caption: 'Strong Bhiyus 💪🏻💪🏻💪🏻'
         }
       ],
       x: 50,
@@ -101,24 +126,23 @@ export class MemoryService {
     },
     {
       id: 4,
-      title: 'Our Journey Document',
-      date: 'April 2024',
-      description: 'A special document capturing all our adventures together. Every page tells a story of us.',
+      title: 'Our Birthday Together',
+      description: 'Thank you iss special birthday ke liye',
       media: [
         {
-          url: 'https://drive.google.com/file/d/1Pr4ZDKq6D0_aR0iOGwwCamFVbruE5yo-/view?usp=sharing',
-          type: 'pdf',
-          caption: 'Our journey together - PDF scrapbook (Google Drive)'
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.55.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjU1LmpwZWciLCJpYXQiOjE3NjkyMzQyODgsImV4cCI6MTgwMDc3MDI4OH0.0lla7Kw0THBHsmob5yaKcyspDYlNmbeezD__mR74PUE',
+          type: 'image',
+          caption: 'I wish ki esi closeness ham waapas se laa sake 🥺'
         },
         {
-          url: 'https://drive.google.com/file/d/1FR_lWl9d6pND28mgdBdR_wtSwPUz0gQp/view?usp=drive_link',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.01.33.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAxLjMzLmpwZWciLCJpYXQiOjE3NjkyMzQ0OTQsImV4cCI6MTgwMDc3MDQ5NH0.xSjaOg3OICkah7TD-W86daCNKE8MOt0LymLU98rWCLg',
           type: 'image',
-          caption: 'Cover page of our memories (Google Drive)'
+          caption: 'Pata nahi kiski nazar lag gayi hame 😭'
         },
         {
-          url: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.01.33%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAxLjMzICgxKS5qcGVnIiwiaWF0IjoxNzY5MjM0NTQzLCJleHAiOjE4MDA3NzA1NDN9.gLok3sjMO9XSnGkQ4KOKq87CJg_5f_6rIRDPbnek7fA',
           type: 'image',
-          caption: 'Writing our story together'
+          caption: 'We deserve one more chance'
         }
       ],
       x: 70,
@@ -127,39 +151,23 @@ export class MemoryService {
     },
     {
       id: 5,
-      title: 'Inside Joke Collection',
-      date: 'May 2024',
-      description: 'Remember when we couldn\'t stop laughing? That moment when everything felt perfect. Our silly moments together.',
+      title: 'CRY BABY',
+      description: 'I understand ki kitne lucky ho tum agar tumhara partner tumhare pass ro raha hai to',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2023.00.07.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIzLjAwLjA3LmpwZWciLCJpYXQiOjE3NjkyMzQ3MDksImV4cCI6MTgwMDc3MDcwOX0.4eA_wMdLtM_fW_XpLGqd7hewrs_LWhXspg3GMLAqvaU',
           type: 'image',
-          caption: 'That hilarious moment we couldn\'t stop laughing'
+          caption: 'I miss these moments... 🥺'
         },
         {
-          url: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2011.41.06.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDExLjQxLjA2LmpwZWciLCJpYXQiOjE3NjkyMzUxMTEsImV4cCI6MTgwMDc3MTExMX0.FqGTy4ofk4pPmXh1nh4eg4QLRoQ3p9_FbZ38GvutlKU',
           type: 'image',
-          caption: 'Your contagious laughter'
+          caption: 'Abse ye red wala baau nahi, bhiyus hai'
         },
         {
-          url: 'https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'Making silly faces at each other'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'The joke that started it all'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'Laughing until our stomachs hurt'
-        },
-        {
-          url: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'Creating memories through laughter'
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Video%202026-01-24%20at%2014.10.32.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBWaWRlbyAyMDI2LTAxLTI0IGF0IDE0LjEwLjMyLm1wNCIsImlhdCI6MTc2OTI0NTU4MiwiZXhwIjoxODAwNzgxNTgyfQ.V5MUnDVFOP2SYf4V1x9f1FjjEA-HaMyKWEiv9oyjnGk',
+          type: 'video',
+          caption: '🤣🤣🤣🤣🤣🤣🤣'
         }
       ],
       x: 85,
@@ -168,24 +176,23 @@ export class MemoryService {
     },
     {
       id: 6,
-      title: 'Special Moments Gallery',
-      date: 'June 2024',
-      description: 'The moment I knew you were special. Your kindness, your laugh, everything about you. A collection of our best times.',
+      title: 'Bahut Mehga hotel in Jabalpur',
+      description: 'Yaad to hoga hi tumhe, Shivom le gaya tha kitni mehgi jagah, mere poore pese khatam ho gaye the 😖😖😖',
       media: [
         {
-          url: 'https://drive.google.com/file/d/1FR_lWl9d6pND28mgdBdR_wtSwPUz0gQp/view?usp=drive_link',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_10_2026-01-26_14-10-40.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18xMF8yMDI2LTAxLTI2XzE0LTEwLTQwLmpwZyIsImlhdCI6MTc2OTQxODMzNywiZXhwIjoxODAwOTU0MzM3fQ.YOpynOjcUNvs_s6SXtRANk4JiEgFElbGuMPyOwCvUh8',
           type: 'image',
-          caption: 'You are special to me (Google Drive)'
+          caption: 'Need you to look at me again this way, and I promise iss baar me bhi apni emotional side explore kar saku tumhare sath'
         },
         {
-          url: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_13_2026-01-26_14-10-40.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18xM18yMDI2LTAxLTI2XzE0LTEwLTQwLmpwZyIsImlhdCI6MTc2OTQxODU5MiwiZXhwIjoxODAwOTU0NTkyfQ.5ufS3Ra80pKYcTw1GOKVMM3m4Sj1RHYj3ujLIt98gjU',
           type: 'image',
-          caption: 'Your beautiful smile that lights up my world'
+          caption: '❣️🖤❣️🖤❣️🖤❣️'
         },
         {
-          url: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_9_2026-01-26_14-10-40.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b185XzIwMjYtMDEtMjZfMTQtMTAtNDAuanBnIiwiaWF0IjoxNzY5NDE4NjUzLCJleHAiOjE4MDA5NTQ2NTN9.zSi6ZJacjuDVIDGNO0OX6EnTVc9dD5Mf3a93HrzCBxI',
           type: 'image',
-          caption: 'Everything about you is perfect'
+          caption: 'Everything about us is not perfect, lekin me use accept karne ready hu aur taiyar hu dheere dheere perfect banane'
         }
       ],
       x: 90,
@@ -196,17 +203,27 @@ export class MemoryService {
       id: 7,
       title: 'Stargazing Night',
       date: 'July 2024',
-      description: 'Lying under the stars, talking about the universe and our place in it. You made infinity feel intimate.',
+      description: 'Lying under the stars, and Dwivedi ki chhat',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-21%20at%2010.26.04.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIxIGF0IDEwLjI2LjA0LmpwZWciLCJpYXQiOjE3Njk0MTg5NDMsImV4cCI6MTgwMDk1NDk0M30.Ji1BR2CzTX026R_z8n6j3ktrEr4s6uIqKceRhy2Akfs',
           type: 'image',
-          caption: 'Under the stars together'
+          caption: 'Model Poornima'
         },
         {
-          url: 'https://images.unsplash.com/photo-1464802686167-b939a6910659?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-26%20at%2014.43.15.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI2IGF0IDE0LjQzLjE1LmpwZWciLCJpYXQiOjE3Njk0MTg5OTgsImV4cCI6MTgwMDk1NDk5OH0.G1AONCnbdvh0DTWlIrfvok57lURbJWCApC01JQAc4Hw',
           type: 'image',
-          caption: 'The night sky above us'
+          caption: 'I miss us so much 🥺🥺🥺🥺'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2011.39.42.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDExLjM5LjQyLmpwZWciLCJpYXQiOjE3Njk0MTkwNjIsImV4cCI6MTgwMDk1NTA2Mn0.4L-kErJg_RTuBgftzQ2lvyL7eP0E_kiLpdUP_Z-gtvY',
+          type: 'image',
+          caption: 'Raat ko bhiyus akele ghar se bhagte hue pakdi gayi'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-18%20at%2022.59.04.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTE4IGF0IDIyLjU5LjA0LmpwZWciLCJpYXQiOjE3Njk0MjA3NDEsImV4cCI6MTgwMDk1Njc0MX0.n_hZ1ZohXlTbyb_lLbcNLQOwkAizrIbmrzZqTKIQP30',
+          type: 'image',
+          caption: 'Tumne kaha tha achhi nahi lag rahi photo, lekin mujhe to kaafi pasand hai'
         }
       ],
       x: 75,
@@ -215,19 +232,23 @@ export class MemoryService {
     },
     {
       id: 8,
-      title: 'Rainy Day Comfort',
-      date: 'August 2024',
-      description: 'Dancing in the rain, laughing at how silly we looked. Sometimes the best moments are unplanned.',
+      title: 'Memories captured together',
+      description: 'Har photo lagate hue yahi lag raha ki we should be have clicked more photos together 😔',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.31%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjMxICgyKS5qcGVnIiwiaWF0IjoxNzY5NDE5MzIxLCJleHAiOjE4MDA5NTUzMjF9.QM1GN9r-6WDfKAzcKybWlxF-UPqd9xhcoQJb2olF4PI',
           type: 'image',
-          caption: 'Dancing in the rain'
+          caption: '❣️🖤❣️🖤❣️🖤❣️'
         },
         {
-          url: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.29.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjI5LmpwZWciLCJpYXQiOjE3Njk0MTkzNTEsImV4cCI6MTgwMDk1NTM1MX0.5rAlWuR-Axh_sQ9iBMvTLYpFizpLgerdUU5erdpmoSQ',
           type: 'image',
-          caption: 'Raindrops and smiles'
+          caption: 'Smiles and togetherness ❣️🖤❣️🖤❣️🖤❣️'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.28.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjI4LmpwZWciLCJpYXQiOjE3Njk0MTk0MjAsImV4cCI6MTgwMDk1NTQyMH0.H94iE-5pEyZZaRzbKoqvm735eS-ierfgQEV750HvpGE',
+          type: 'image',
+          caption: 'Cuteness at its peak ❣️🖤❣️🖤❣️🖤❣️'
         }
       ],
       x: 55,
@@ -236,20 +257,24 @@ export class MemoryService {
     },
     {
       id: 9,
-      title: 'Cooking Together',
-      date: 'September 2024',
-      description: 'Our first attempt at cooking together. We burned the pasta but made perfect memories.',
+      title: 'Met after a long time',
+      description: 'Pune se aake kitne time baad mile the apan 🥺',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.24%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjI0ICgyKS5qcGVnIiwiaWF0IjoxNzY5NDIwMDEyLCJleHAiOjE4MDA5NTYwMTJ9.ZVj1fRX3fQkBqS6lWXy3tOVJ6GQNx1AetaC3yY_bs-w',
           type: 'image',
-          caption: 'Cooking adventures'
+          caption: 'Tumhare lambe baal kaafi achhe lagte hain 😘'
         },
         {
-          url: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.23.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjIzLmpwZWciLCJpYXQiOjE3Njk0MjAwNTQsImV4cCI6MTgwMDk1NjA1NH0.qcIQBlY2jMHRKb73WjINSXJhuXj6Ax3DWFxbbuyH9MU',
           type: 'image',
-          caption: 'Kitchen chaos and laughter'
-        }
+          caption: 'Ye ghadi mere pass hai, aur sach kaha tumne, ye nahi lag rahi tumhare hath par achhi 🤣'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.22.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjIyLmpwZWciLCJpYXQiOjE3Njk0MjAxNTEsImV4cCI6MTgwMDk1NjE1MX0.7eB-Xq9j_cjA-yx0Sg2AKVVxAZrOV8FCWm2cwy7TQYY',
+          type: 'image',
+          caption: 'Ye kabki photo hai wo tum hi bata sakti ho, mujhe to yaad bhi nahi hai, but mujhe ye din waapas chahiye'
+        },
       ],
       x: 35,
       y: 80,
@@ -257,19 +282,18 @@ export class MemoryService {
     },
     {
       id: 10,
-      title: 'Road Trip Adventure',
-      date: 'October 2024',
-      description: 'Miles of open road, terrible singing, and the best company. Getting lost never felt so right.',
+      title: 'Photo obsessed cutie',
+      description: 'Farq nahi padta ki filter wali photo hai ya unfilter, yahi photos hai mere pass tumhari yaad ke liye',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.22%20(2).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjIyICgyKS5qcGVnIiwiaWF0IjoxNzY5NDIwMjc1LCJleHAiOjE4MDA5NTYyNzV9.Y6iB7GF60W8QOiFgqsLqsojluXzasinyXtoAhGrhiKg',
           type: 'image',
-          caption: 'On the open road'
+          caption: '❣️'
         },
         {
-          url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.22%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjIyICgxKS5qcGVnIiwiaWF0IjoxNzY5NDIwMjk0LCJleHAiOjE4MDA5NTYyOTR9.0Un7Wo68dSRRUn1Fwdu_2rA2Qlw18dz7huYDUr8ngIE',
           type: 'image',
-          caption: 'Scenic stops along the way'
+          caption: '🖤'
         }
       ],
       x: 15,
@@ -278,19 +302,23 @@ export class MemoryService {
     },
     {
       id: 11,
-      title: 'Bookstore Date',
-      date: 'November 2024',
-      description: 'Hours lost in the bookstore, recommending our favorite stories to each other. You picked the perfect book for me.',
+      title: 'Black Couple (BLK)',
+      description: 'Ham dono hi black me achhe lagte hain!!!',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.56%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjU2ICgxKS5qcGVnIiwiaWF0IjoxNzY5NDIwMzUyLCJleHAiOjE4MDA5NTYzNTJ9.LsOnhl0o5puI64vGfnz_kuI-Cl7urxBiNb7oVoeNqOI',
           type: 'image',
-          caption: 'Lost in books together'
+          caption: 'Lost in blackness together'
         },
         {
-          url: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.25.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjI1LmpwZWciLCJpYXQiOjE3Njk0MjA1MTIsImV4cCI6MTgwMDk1NjUxMn0.rxY01YdjitB71n180g676eS5DhJ5kzOUii5Qtt3ZQYQ',
           type: 'image',
-          caption: 'Finding treasures'
+          caption: 'Finding treasures 🤤'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-24%20at%2000.14.24.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTI0IGF0IDAwLjE0LjI0LmpwZWciLCJpYXQiOjE3Njk0MjE3MDEsImV4cCI6MTgwMDk1NzcwMX0.WV60Z-cGHRyYHHH6knb9mWNjmqWgkDPOruyZHcQ5xrU',
+          type: 'image',
+          caption: 'Found treasures 🤤'
         }
       ],
       x: 10,
@@ -299,19 +327,28 @@ export class MemoryService {
     },
     {
       id: 12,
-      title: 'Holiday Lights',
-      date: 'December 2024',
-      description: 'Walking through the city, admiring holiday lights. Everything sparkled, but not as much as your eyes.',
+      title: 'Movie night',
+      description: 'Packed with winter specials in the chilly night',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_2_2026-01-24_00-01-49.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18yXzIwMjYtMDEtMjRfMDAtMDEtNDkuanBnIiwiaWF0IjoxNzY5NDIxMDU1LCJleHAiOjE4MDA5NTcwNTV9.MnEDX8_YYLucT4NZ0gOzjPRHWJnmRdI9QkLQfutAH1Q',
           type: 'image',
           caption: 'Holiday magic'
         },
         {
-          url: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.54%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjU0ICgxKS5qcGVnIiwiaWF0IjoxNzY5NDIxNDk4LCJleHAiOjE4MDA5NTc0OTh9.6gJHwIlls4--DZ-Q7ZqBC1gcMk4CxnlVSkxW3qR0WzM',
           type: 'image',
           caption: 'Lights and wonder'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.55%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjU1ICgxKS5qcGVnIiwiaWF0IjoxNzY5NDIxNjM3LCJleHAiOjE4MDA5NTc2Mzd9.zMeGZDcZZbrvG_YeboVCe8B49Q7j3RN32h6Z5Yv3HEM',
+          type: 'image',
+          caption: 'I want you to look at me the way you are looking at camera with hope and love'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.54.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjU0LmpwZWciLCJpYXQiOjE3Njk0MjE1ODMsImV4cCI6MTgwMDk1NzU4M30.5PP2SGg9YH5LZodCa35E-oXvWISKkRyMLjywhvl73WI',
+          type: 'image',
+          caption: 'Hamari model movie dekhne chali'
         }
       ],
       x: 45,
@@ -320,19 +357,18 @@ export class MemoryService {
     },
     {
       id: 13,
-      title: 'New Year Together',
-      date: 'January 2025',
-      description: 'Counting down to midnight, making wishes for the future. Every year with you is a gift.',
+      title: 'Ride together',
+      description: 'Honestly mujhe ye bhi yaad nahi kabki hai',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.52.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjUyLmpwZWciLCJpYXQiOjE3Njk0MjE4MDQsImV4cCI6MTgwMDk1NzgwNH0.2S0oynFjr8bnK9owlUb2zfgHH891Tm8h__oQnFF2_KQ',
           type: 'image',
-          caption: 'New year, new memories'
+          caption: 'Mujhe hamari rides yaad hai sath wali, tumhe rukna jyada pasand tha, aur mujhe chalana, but wo realisation hi kya jo samay par ho jaye'
         },
         {
-          url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/WhatsApp%20Image%202026-01-23%20at%2023.43.53%20(1).jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9XaGF0c0FwcCBJbWFnZSAyMDI2LTAxLTIzIGF0IDIzLjQzLjUzICgxKS5qcGVnIiwiaWF0IjoxNzY5NDIxODkzLCJleHAiOjE4MDA5NTc4OTN9.yE9BblQrscjSHfK--g-zaIAqYGdpFnwtX1D3N6JbRUk',
           type: 'image',
-          caption: 'Celebration and joy'
+          caption: 'Cute ❤️'
         }
       ],
       x: 60,
@@ -341,18 +377,22 @@ export class MemoryService {
     },
     {
       id: 14,
-      title: 'Art Museum Visit',
-      date: 'February 2025',
-      description: 'Wandering through galleries, discussing art and life. You are my favorite masterpiece.',
+      title: 'Kuchh cringe bhi to chahiye',
+      description: 'Wonderful dance',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_1_2026-01-26_15-40-52.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18xXzIwMjYtMDEtMjZfMTUtNDAtNTIuanBnIiwiaWF0IjoxNzY5NDIyMzc0LCJleHAiOjE4MDA5NTgzNzR9.ui8NzWfefaGKlY41TSrQn-Oq0Xn5NzlElDawdvtBdvE',
           type: 'image',
           caption: 'Art and culture'
         },
         {
-          url: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=600&fit=crop',
-          type: 'image',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-34.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM0Lm1wNCIsImlhdCI6MTc2OTQyMjQ0NiwiZXhwIjoxODAwOTU4NDQ2fQ.c5KIeFOGboSs8fEsRZAQcA2SagDHPgKN-WlIHHq8RBQ',
+          type: 'video',
+          caption: 'Beauty everywhere'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-34.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM0Lm1wNCIsImlhdCI6MTc2OTQyMjQ0NiwiZXhwIjoxODAwOTU4NDQ2fQ.c5KIeFOGboSs8fEsRZAQcA2SagDHPgKN-WlIHHq8RBQ',
+          type: 'video',
           caption: 'Beauty everywhere'
         }
       ],
@@ -362,19 +402,18 @@ export class MemoryService {
     },
     {
       id: 15,
-      title: 'Forever Moments',
-      date: 'March 2025',
-      description: 'Every day with you is a new adventure. Here is to all the memories we have yet to make.',
+      title: '😍😍😍😍',
+      description: 'Every day with you is a new adventure. Here is to all the memories we had',
       media: [
         {
-          url: 'https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=800&h=600&fit=crop',
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_2026-01-26_15-50-51.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18yMDI2LTAxLTI2XzE1LTUwLTUxLmpwZyIsImlhdCI6MTc2OTQyMjkxMiwiZXhwIjoxODAwOTU4OTEyfQ.QgDs-bsdtjoZNH7sjTcFyB3kfqFq4YxUXhGjslcdr5k',
           type: 'image',
-          caption: 'Our future together'
+          caption: '☺️'
         },
         {
-          url: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=600&fit=crop',
-          type: 'image',
-          caption: 'Forever and always'
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-36.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM2Lm1wNCIsImlhdCI6MTc2OTQyMjU3NSwiZXhwIjoxODAwOTU4NTc1fQ.QSOKS6qg3axftj_-Bg6gNFFBA3TjDpJabvQPzv_YwiM',
+          type: 'video',
+          caption: 'Yaha tak aagye ho to gusse me phone to nahi feka hoga, isliye ek aur bold move'
         }
       ],
       x: 80,

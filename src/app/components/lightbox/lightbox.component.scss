@@ -180,6 +180,68 @@
   border-radius: 10px;
 }
 
+.memory-video {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.speed-control-zones {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 66.67%; // Only top 2/3 of the video
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+  pointer-events: none;
+
+  @media (min-width: 769px) {
+    display: none; // Only show on mobile
+  }
+}
+
+.speed-zone {
+  width: 10%; // Each zone takes 25% width (smaller area)
+  pointer-events: auto;
+  touch-action: none;
+  
+  &.speed-zone-left {
+    // Left side
+  }
+  
+  &.speed-zone-right {
+    // Right side
+  }
+}
+
+.speed-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  z-index: 10;
+  pointer-events: none;
+  animation: pulse-speed 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse-speed {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
 // Responsive Design
 @media (max-width: 768px) {
   .lightbox-modal {
