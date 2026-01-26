@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,7 @@ import { AudioControlComponent } from '../../components/audio-control/audio-cont
 })
 export class FinalMessageComponent implements OnInit {
   audioService = inject(AudioService);
+  private elementRef = inject(ElementRef);
   
   // Update this URL with your photo
   photoUrl = 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_2026-01-26_17-23-16.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18yMDI2LTAxLTI2XzE3LTIzLTE2LmpwZyIsImlhdCI6MTc2OTQyODQyMSwiZXhwIjoxODAwOTY0NDIxfQ.JxTQdPamyzUfzMefMQHXWEKfhGmxqeHhY_twY90t5DA';
@@ -40,53 +41,69 @@ export class FinalMessageComponent implements OnInit {
   }
 
   private animateContent(): void {
+    const constellation = this.elementRef.nativeElement.querySelector('.final-constellation');
+    const title = this.elementRef.nativeElement.querySelector('.final-title');
+    const message = this.elementRef.nativeElement.querySelector('.final-message');
+    const signature = this.elementRef.nativeElement.querySelector('.final-signature');
+    const buttons = this.elementRef.nativeElement.querySelector('.action-buttons');
+    
     // Animate constellation reveal
-    gsap.from('.final-constellation', {
-      opacity: 0,
-      scale: 0.5,
-      duration: 2,
-      ease: 'power2.out'
-    });
+    if (constellation) {
+      gsap.from(constellation, {
+        opacity: 0,
+        scale: 0.5,
+        duration: 2,
+        ease: 'power2.out'
+      });
+    }
 
     // Animate message
-    gsap.from('.final-title', {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      delay: 1,
-      ease: 'power3.out'
-    });
+    if (title) {
+      gsap.from(title, {
+        opacity: 0,
+        y: 50,
+        duration: 1.5,
+        delay: 1,
+        ease: 'power3.out'
+      });
+    }
 
-    gsap.from('.final-message', {
-      opacity: 0,
-      y: 30,
-      duration: 1.5,
-      delay: 1.5,
-      ease: 'power3.out'
-    });
+    if (message) {
+      gsap.from(message, {
+        opacity: 0,
+        y: 30,
+        duration: 1.5,
+        delay: 1.5,
+        ease: 'power3.out'
+      });
+    }
 
-    gsap.from('.final-signature', {
-      opacity: 0,
-      duration: 1.5,
-      delay: 2,
-      ease: 'power3.out'
-    });
+    if (signature) {
+      gsap.from(signature, {
+        opacity: 0,
+        duration: 1.5,
+        delay: 2,
+        ease: 'power3.out'
+      });
+    }
 
-    gsap.from('.action-buttons', {
-      opacity: 0,
-      y: 20,
-      duration: 1,
-      delay: 2.5,
-      ease: 'power3.out'
-    });
+    if (buttons) {
+      gsap.from(buttons, {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 2.5,
+        ease: 'power3.out'
+      });
+    }
 
     // Animate hearts
     this.animateHearts();
   }
 
   private animateHearts(): void {
-    const hearts = document.querySelectorAll('.floating-heart');
-    hearts.forEach((heart, index) => {
+    const hearts = this.elementRef.nativeElement.querySelectorAll('.floating-heart');
+    hearts.forEach((heart: HTMLElement, index: number) => {
       gsap.to(heart, {
         y: -100,
         opacity: 0,

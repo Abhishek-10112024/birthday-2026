@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,6 +21,7 @@ export class LandingComponent implements OnInit {
   private audioService = inject(AudioService);
   private dialog = inject(MatDialog);
   private memoryService = inject(MemoryService);
+  private elementRef = inject(ElementRef);
   
   showAudioHint = true;
 
@@ -52,16 +53,15 @@ export class LandingComponent implements OnInit {
       }
       // Hide the audio hint
       this.showAudioHint = false;
-      // Remove listener after first interaction
-      document.removeEventListener('click', startAudio);
     };
     
-    document.addEventListener('click', startAudio, { once: true });
+    // Use ElementRef to add listener to component element
+    this.elementRef.nativeElement.addEventListener('click', startAudio, { once: true });
   }
 
   private animateStars(): void {
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star) => {
+    const stars = this.elementRef.nativeElement.querySelectorAll('.star');
+    stars.forEach((star: HTMLElement) => {
       gsap.to(star, {
         opacity: Math.random() * 0.5 + 0.5,
         duration: Math.random() * 2 + 1,
@@ -73,28 +73,38 @@ export class LandingComponent implements OnInit {
   }
 
   private animateTitle(): void {
-    gsap.from('.landing-title', {
-      opacity: 0,
-      y: -50,
-      duration: 1.5,
-      ease: 'power3.out'
-    });
+    const title = this.elementRef.nativeElement.querySelector('.landing-title');
+    const subtitle = this.elementRef.nativeElement.querySelector('.landing-subtitle');
+    const button = this.elementRef.nativeElement.querySelector('.start-button');
+    
+    if (title) {
+      gsap.from(title, {
+        opacity: 0,
+        y: -50,
+        duration: 1.5,
+        ease: 'power3.out'
+      });
+    }
 
-    gsap.from('.landing-subtitle', {
-      opacity: 0,
-      y: 30,
-      duration: 1.5,
-      delay: 0.5,
-      ease: 'power3.out'
-    });
+    if (subtitle) {
+      gsap.from(subtitle, {
+        opacity: 0,
+        y: 30,
+        duration: 1.5,
+        delay: 0.5,
+        ease: 'power3.out'
+      });
+    }
 
-    gsap.from('.start-button', {
-      opacity: 0,
-      scale: 0.8,
-      duration: 1,
-      delay: 1.5,
-      ease: 'back.out(1.7)'
-    });
+    if (button) {
+      gsap.from(button, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        delay: 1.5,
+        ease: 'back.out(1.7)'
+      });
+    }
   }
 
   startJourney(): void {
@@ -106,15 +116,18 @@ export class LandingComponent implements OnInit {
       this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
     }
     
-    gsap.to('.landing-container', {
-      opacity: 0,
-      scale: 1.2,
-      duration: 1,
-      ease: 'power2.in',
-      onComplete: () => {
-        this.router.navigate(['/constellation']);
-      }
-    });
+    const container = this.elementRef.nativeElement.querySelector('.landing-container');
+    if (container) {
+      gsap.to(container, {
+        opacity: 0,
+        scale: 1.2,
+        duration: 1,
+        ease: 'power2.in',
+        onComplete: () => {
+          this.router.navigate(['/constellation']);
+        }
+      });
+    }
   }
 
   generateStars(): number[] {
@@ -144,7 +157,7 @@ export class LandingComponent implements OnInit {
       // Check if this memory can be unlocked (sequential order)
       if (!this.memoryService.canUnlockMemory(memory.id)) {
         // Show feedback that this memory is locked
-        const clickableStars = document.querySelectorAll('.clickable-star');
+        const clickableStars = this.elementRef.nativeElement.querySelectorAll('.clickable-star');
         if (clickableStars[memoryIndex]) {
           // Shake animation for locked star
           gsap.to(clickableStars[memoryIndex], {
@@ -165,7 +178,7 @@ export class LandingComponent implements OnInit {
       this.audioService.playSoundEffect('star-click');
       
       // Animate the clicked star
-      const clickableStars = document.querySelectorAll('.clickable-star');
+      const clickableStars = this.elementRef.nativeElement.querySelectorAll('.clickable-star');
       if (clickableStars[memoryIndex]) {
         gsap.to(clickableStars[memoryIndex], {
           scale: 1.5,
@@ -203,14 +216,17 @@ export class LandingComponent implements OnInit {
       this.audioService.playBackgroundMusic('/assets/audio/background/ambient-space.mp3');
     }
     
-    gsap.to('.landing-container', {
-      opacity: 0,
-      scale: 1.2,
-      duration: 1,
-      ease: 'power2.in',
-      onComplete: () => {
-        this.router.navigate(['/constellation']);
-      }
-    });
+    const container = this.elementRef.nativeElement.querySelector('.landing-container');
+    if (container) {
+      gsap.to(container, {
+        opacity: 0,
+        scale: 1.2,
+        duration: 1,
+        ease: 'power2.in',
+        onComplete: () => {
+          this.router.navigate(['/constellation']);
+        }
+      });
+    }
   }
 }

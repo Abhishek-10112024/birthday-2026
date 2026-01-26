@@ -89,24 +89,36 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private animateIntro(): void {
-    gsap.from('.constellation-header', {
-      opacity: 0,
-      y: -30,
-      duration: 1,
-      ease: 'power2.out'
-    });
+    // Use setTimeout to ensure DOM is ready
+    setTimeout(() => {
+      const header = this.canvasRef.nativeElement.parentElement?.querySelector('.constellation-header');
+      const progress = this.canvasRef.nativeElement.parentElement?.querySelector('.progress-container');
+      
+      if (header) {
+        gsap.from(header, {
+          opacity: 0,
+          y: -30,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      }
 
-    gsap.from('.progress-container', {
-      opacity: 0,
-      x: -30,
-      duration: 1,
-      delay: 0.3,
-      ease: 'power2.out'
+      if (progress) {
+        gsap.from(progress, {
+          opacity: 0,
+          x: -30,
+          duration: 1,
+          delay: 0.3,
+          ease: 'power2.out'
+        });
+      }
     });
   }
 
   private animateStars(): void {
-    const stars = document.querySelectorAll('.memory-star');
+    const stars = this.canvasRef.nativeElement.parentElement?.querySelectorAll('.memory-star');
+    if (!stars) return;
+    
     stars.forEach((star, index) => {
       // Set initial state
       gsap.set(star, { scale: 1, opacity: 1 });
@@ -126,7 +138,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Check if this memory can be unlocked (sequential order)
     if (!memory.unlocked && !this.memoryService.canUnlockMemory(memory.id)) {
       // Show feedback that this memory is locked
-      const starElement = document.querySelector(`[data-memory-id="${memory.id}"]`);
+      const starElement = this.canvasRef.nativeElement.parentElement?.querySelector(`[data-memory-id="${memory.id}"]`);
       if (starElement) {
         // Shake animation for locked star
         gsap.to(starElement, {
@@ -164,7 +176,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private animateUnlock(memory: Memory): void {
-    const starElement = document.querySelector(`[data-memory-id="${memory.id}"]`);
+    const starElement = this.canvasRef.nativeElement.parentElement?.querySelector(`[data-memory-id="${memory.id}"]`);
     if (starElement) {
       gsap.to(starElement, {
         scale: 1.5,
@@ -180,7 +192,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private createParticleBurst(memory: Memory): void {
-    const container = document.querySelector('.constellation-container');
+    const container = this.canvasRef.nativeElement.parentElement?.querySelector('.constellation-container');
     if (!container) return;
 
     for (let i = 0; i < 12; i++) {
@@ -225,14 +237,17 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Play completion sound effect
     this.audioService.playSoundEffect('star-click');
     
-    gsap.to('.constellation-container', {
-      opacity: 0,
-      duration: 1.5,
-      ease: 'power2.in',
-      onComplete: () => {
-        this.router.navigate(['/final-message']);
-      }
-    });
+    const container = this.canvasRef.nativeElement.parentElement?.querySelector('.constellation-container');
+    if (container) {
+      gsap.to(container, {
+        opacity: 0,
+        duration: 1.5,
+        ease: 'power2.in',
+        onComplete: () => {
+          this.router.navigate(['/final-message']);
+        }
+      });
+    }
   }
 
   onStarHover(memoryId: number | null): void {
