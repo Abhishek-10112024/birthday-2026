@@ -1,6 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Memory, ConstellationLine, MediaItem } from '../models/memory.model';
-import { SupabaseService } from './supabase.service';
+import { Memory, ConstellationLine } from '../models/memory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -516,18 +515,6 @@ export class MemoryService {
     const match = url.match(/\/d\/([^/]+)/);
     if (match && match[1]) {
       return `https://drive.google.com/thumbnail?id=${match[1]}&sz=s4000`;
-    }
-    return url;
-  }
-
-  // Helper method to convert Google Drive sharing URL to PDF preview URL
-  convertDrivePdfUrl(url: string): string {
-    // Convert Google Drive sharing URL to embeddable format
-    // Example: https://drive.google.com/file/d/FILE_ID/view
-    // Convert to: https://drive.google.com/file/d/FILE_ID/preview
-    const match = url.match(/\/d\/([^/]+)/);
-    if (match && match[1]) {
-      return `https://drive.google.com/file/d/${match[1]}/preview`;
     }
     return url;
   }

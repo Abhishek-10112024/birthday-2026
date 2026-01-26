@@ -1,6 +1,6 @@
 export interface MediaItem {
-  url: string;              // URL for image, video, or PDF
-  type: 'image' | 'video' | 'pdf';    // Media type
+  url: string;              // URL for image or video
+  type: 'image' | 'video';  // Media type
   caption?: string;         // Optional caption for the media
 }
 

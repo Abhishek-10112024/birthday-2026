@@ -12,7 +12,6 @@ import {
   OnDestroy
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MediaItem } from '../../models/memory.model';
 import { MemoryService } from '../../services/memory.service';
@@ -27,7 +26,6 @@ import { AudioService } from '../../services/audio.service';
 })
 export class LightboxComponent implements OnDestroy {
   private memoryService = inject(MemoryService);
-  private sanitizer = inject(DomSanitizer);
   private platformId = inject(PLATFORM_ID);
   private audioService = inject(AudioService);
 
@@ -45,6 +43,11 @@ export class LightboxComponent implements OnDestroy {
   // Video playback speed control
   isSpeedingUp = signal<boolean>(false);
   private videoElement: HTMLVideoElement | null = null;
+
+  // Swipe gesture tracking
+  private touchStartX = 0;
+  private touchStartY = 0;
+  private readonly SWIPE_THRESHOLD = 50; // Minimum distance for swipe
 
   // Current item computed
   currentItem = computed(() => {
@@ -110,6 +113,31 @@ export class LightboxComponent implements OnDestroy {
     }
   }
 
+  // Swipe gesture handlers for navigation
+  onSwipeStart(event: TouchEvent): void {
+    this.touchStartX = event.touches[0].clientX;
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  onSwipeEnd(event: TouchEvent): void {
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+    
+    const deltaX = touchEndX - this.touchStartX;
+    const deltaY = touchEndY - this.touchStartY;
+    
+    // Only trigger swipe if horizontal movement is greater than vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.SWIPE_THRESHOLD) {
+      if (deltaX > 0) {
+        // Swipe right -> go to previous
+        this.navigate(-1);
+      } else {
+        // Swipe left -> go to next
+        this.navigate(1);
+      }
+    }
+  }
+
   // Ensure body overflow is restored if the component is destroyed without close
   ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -124,18 +152,12 @@ export class LightboxComponent implements OnDestroy {
         this.handleClose();
         break;
       case 'ArrowLeft':
-        const itemLeft = this.currentItem();
-        if (!itemLeft || itemLeft.type !== 'pdf') {
-          event.preventDefault();
-          this.navigate(-1);
-        }
+        event.preventDefault();
+        this.navigate(-1);
         break;
       case 'ArrowRight':
-        const itemRight = this.currentItem();
-        if (!itemRight || itemRight.type !== 'pdf') {
-          event.preventDefault();
-          this.navigate(1);
-        }
+        event.preventDefault();
+        this.navigate(1);
         break;
     }
   }
@@ -160,10 +182,5 @@ export class LightboxComponent implements OnDestroy {
 
   getImageUrl(url: string): string {
     return this.memoryService.convertDriveUrl(url);
-  }
-
-  getPdfUrl(url: string): SafeResourceUrl {
-    const convertedUrl = this.memoryService.convertDrivePdfUrl(url);
-    return this.sanitizer.bypassSecurityTrustResourceUrl(convertedUrl);
   }
 }

@@ -1,5 +1,8 @@
 <div class="lightbox-backdrop" (click)="onBackdropClick()">
-  <div class="lightbox-modal" (click)="$event.stopPropagation()">
+  <div class="lightbox-modal" 
+       (click)="$event.stopPropagation()"
+       (touchstart)="onSwipeStart($event)"
+       (touchend)="onSwipeEnd($event)">
     <!-- Close Button -->
     <button class="close-button" (click)="handleClose()" aria-label="Close">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -35,15 +38,7 @@
         }
 
         <div class="media-container">
-          @if (item.type === 'pdf') {
-            <!-- PDF Display -->
-            <iframe 
-              [src]="getPdfUrl(item.url)" 
-              class="pdf-viewer"
-              frameborder="0"
-              allowfullscreen>
-            </iframe>
-          } @else if (item.type === 'video') {
+          @if (item.type === 'video') {
             <!-- Touch zones for 2x speed on mobile -->
             <div class="speed-control-zones">
               <div class="speed-zone speed-zone-left" 
