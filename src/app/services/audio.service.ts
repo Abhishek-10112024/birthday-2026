@@ -10,19 +10,20 @@ export class AudioService {
   private isBrowser: boolean;
 
   // Signals for reactive state
-  isMuted = signal<boolean>(false);
+  isMuted = signal<boolean>(true); // Start muted by default
   isPlaying = signal<boolean>(false);
   volume = signal<number>(0.3); // 30% volume for background music
 
   constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
     
-    // Load mute preference from localStorage
+    // Load mute preference from localStorage (if user has previously set it)
     if (this.isBrowser) {
       const savedMute = localStorage.getItem('audioMuted');
       if (savedMute !== null) {
         this.isMuted.set(savedMute === 'true');
       }
+      // If no saved preference, default is muted (true)
     }
   }
 

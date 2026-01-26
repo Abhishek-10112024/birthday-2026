@@ -46,8 +46,13 @@ export class LandingComponent implements OnInit {
   }
 
   private setupAudioInteraction(): void {
-    // Listen for any click on the page to start audio
+    // Listen for any click on the page to unmute and start audio (first time only)
     const startAudio = () => {
+      // Unmute on first click
+      if (this.audioService.isMuted()) {
+        this.audioService.toggleMute();
+      }
+      // Start playing if not already
       if (!this.audioService.isPlaying()) {
         this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
       }
@@ -55,7 +60,7 @@ export class LandingComponent implements OnInit {
       this.showAudioHint = false;
     };
     
-    // Use ElementRef to add listener to component element
+    // Use ElementRef to add listener to component element (once: true ensures it only fires once)
     this.elementRef.nativeElement.addEventListener('click', startAudio, { once: true });
   }
 
@@ -154,25 +159,10 @@ export class LandingComponent implements OnInit {
     if (memoryIndex < this.memories.length) {
       const memory = this.memories[memoryIndex];
       
-      // Check if this memory can be unlocked (sequential order)
-      if (!this.memoryService.canUnlockMemory(memory.id)) {
-        // Show feedback that this memory is locked
-        const clickableStars = this.elementRef.nativeElement.querySelectorAll('.clickable-star');
-        if (clickableStars[memoryIndex]) {
-          // Shake animation for locked star
-          gsap.to(clickableStars[memoryIndex], {
-            x: -10,
-            duration: 0.1,
-            yoyo: true,
-            repeat: 5,
-            ease: 'power2.inOut'
-          });
-        }
-        return; // Don't open dialog for locked memories
+      // Unlock the memory if not already unlocked (will be saved to localStorage)
+      if (!memory.unlocked) {
+        this.memoryService.unlockMemory(memory.id);
       }
-      
-      // Unlock the memory (will be saved to localStorage)
-      this.memoryService.unlockMemory(memory.id);
       
       // Play star click sound effect
       this.audioService.playSoundEffect('star-click');
