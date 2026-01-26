@@ -8,6 +8,7 @@ export class AudioService {
   private platformId = inject(PLATFORM_ID);
   private backgroundAudio: HTMLAudioElement | null = null;
   private isBrowser: boolean;
+  private wasPlayingBeforeHidden = false;
 
   // Signals for reactive state
   isMuted = signal<boolean>(true); // Start muted by default
@@ -24,7 +25,31 @@ export class AudioService {
         this.isMuted.set(savedMute === 'true');
       }
       // If no saved preference, default is muted (true)
+      
+      // Listen for tab visibility changes
+      this.setupVisibilityListener();
     }
+  }
+
+  /**
+   * Setup listener for tab visibility changes
+   */
+  private setupVisibilityListener(): void {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Tab is hidden - pause audio if playing
+        if (this.isPlaying() && !this.isMuted()) {
+          this.wasPlayingBeforeHidden = true;
+          this.pauseBackgroundMusic();
+        }
+      } else {
+        // Tab is visible again - resume if was playing before
+        if (this.wasPlayingBeforeHidden && !this.isMuted()) {
+          this.resumeBackgroundMusic();
+          this.wasPlayingBeforeHidden = false;
+        }
+      }
+    });
   }
 
   /**

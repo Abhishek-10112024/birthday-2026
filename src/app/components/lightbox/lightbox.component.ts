@@ -88,8 +88,8 @@ export class LightboxComponent implements OnDestroy {
   }
 
   onVideoPlay(): void {
-    // Lower background music to 10% when video plays
-    this.audioService.lowerVolume(0.2);
+    // Lower background music to ~5% when video plays (reduce by 0.25 from 0.3)
+    this.audioService.lowerVolume(0.25);
   }
 
   onVideoPause(): void {
