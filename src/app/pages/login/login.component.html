@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="stars-background">
+    @for (star of [].constructor(50); track $index) {
+      <div class="star" 
+           [style.left.%]="($index * 7.3) % 100" 
+           [style.top.%]="($index * 11.7) % 100">
+      </div>
+    }
+  </div>
+
+  <div class="login-card">
+    <div class="login-icon">
+      <mat-icon>lock</mat-icon>
+    </div>
+    
+    <h1>Welcome</h1>
+    <p class="subtitle">Enter the password to continue</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input 
+          [type]="showPassword() ? 'text' : 'password'"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Enter password"
+          autocomplete="off"
+          required>
+        <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+          <mat-icon>{{ showPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </div>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <button mat-raised-button type="submit" class="submit-button">
+        <mat-icon>arrow_forward</mat-icon>
+        Enter
+      </button>
+    </form>
+  </div>
+</div>
