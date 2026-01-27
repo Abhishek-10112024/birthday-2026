@@ -2,6 +2,7 @@
   <div class="lightbox-modal" 
        (click)="$event.stopPropagation()"
        (touchstart)="onSwipeStart($event)"
+       (touchmove)="onSwipeMove($event)"
        (touchend)="onSwipeEnd($event)">
     <!-- Close Button -->
     <button class="close-button" (click)="handleClose()" aria-label="Close">
@@ -28,73 +29,108 @@
       </button>
     }
 
-    <!-- Content -->
+    <!-- Content with swipe slider -->
     <div class="lightbox-content">
+      <!-- Caption (stays fixed) -->
       @if (currentItem(); as item) {
         @if (item.caption) {
           <div class="media-caption">
             <p>{{ item.caption }}</p>
           </div>
         }
-
-        <div class="media-container">
-          @if (item.type === 'video') {
-            <!-- Touch zones for 2x speed on mobile -->
-            <div class="speed-control-zones">
-              <div class="speed-zone speed-zone-left" 
-                   (touchstart)="onTouchStart($event)"
-                   (touchend)="onTouchEnd()">
-              </div>
-              <div class="speed-zone speed-zone-right" 
-                   (touchstart)="onTouchStart($event)"
-                   (touchend)="onTouchEnd()">
-              </div>
-            </div>
-            
-            <!-- Speed indicator -->
-            @if (isSpeedingUp()) {
-              <div class="speed-indicator">
-                <span class="speed-text">2x speed</span>
-                <span class="speed-arrows">»</span>
-              </div>
-            }
-            
-            <!-- Video Display -->
-            <video 
-              [src]="item.url" 
-              class="memory-video"
-              controls
-              preload="metadata"
-              (loadedmetadata)="onVideoLoaded($event)"
-              (play)="onVideoPlay()"
-              (pause)="onVideoPause()"
-              (ended)="onVideoPause()">
-              Your browser does not support the video tag.
-            </video>
-          } @else {
-            <!-- Loading spinner for images -->
-            @if (imageLoading()) {
-              <div class="image-loader">
-                <mat-spinner diameter="60"></mat-spinner>
-              </div>
-            }
-            
-            <!-- Image Display -->
-            <img 
-              [src]="getImageUrl(item.url)" 
-              [alt]="item.caption || 'Memory image'"
-              class="memory-image"
-              [class.loaded]="!imageLoading()"
-              (load)="onImageLoad()"
-              (error)="onImageError()">
-          }
-        </div>
-
-        <!-- Image counter -->
-        <div class="image-counter">
-          {{ currentIndex() + 1 }} / {{ items().length }}
-        </div>
       }
+
+      <!-- Swipe slider container -->
+      <div class="swipe-slider" [style.transform]="'translateX(' + swipeOffset() + 'px)'" [class.animating]="isAnimating()">
+        <!-- Previous item -->
+        @if (prevItem(); as prev) {
+          <div class="slide-item slide-prev">
+            @if (prev.type === 'video') {
+              <video [src]="prev.url" class="memory-video" preload="metadata">
+                Your browser does not support the video tag.
+              </video>
+            } @else {
+              <img [src]="getImageUrl(prev.url)" [alt]="prev.caption || 'Memory image'" class="memory-image loaded">
+            }
+          </div>
+        }
+
+        <!-- Current item -->
+        @if (currentItem(); as item) {
+          <div class="slide-item slide-current">
+            <div class="media-container">
+              @if (item.type === 'video') {
+                <!-- Touch zones for 2x speed on mobile -->
+                <div class="speed-control-zones">
+                  <div class="speed-zone speed-zone-left" 
+                       (touchstart)="onTouchStart($event)"
+                       (touchend)="onTouchEnd()">
+                  </div>
+                  <div class="speed-zone speed-zone-right" 
+                       (touchstart)="onTouchStart($event)"
+                       (touchend)="onTouchEnd()">
+                  </div>
+                </div>
+                
+                <!-- Speed indicator -->
+                @if (isSpeedingUp()) {
+                  <div class="speed-indicator">
+                    <span class="speed-text">2x speed</span>
+                    <span class="speed-arrows">»</span>
+                  </div>
+                }
+                
+                <!-- Video Display -->
+                <video 
+                  [src]="item.url" 
+                  class="memory-video"
+                  controls
+                  preload="metadata"
+                  (loadedmetadata)="onVideoLoaded($event)"
+                  (play)="onVideoPlay()"
+                  (pause)="onVideoPause()"
+                  (ended)="onVideoPause()">
+                  Your browser does not support the video tag.
+                </video>
+              } @else {
+                <!-- Loading spinner for images -->
+                @if (imageLoading()) {
+                  <div class="image-loader">
+                    <mat-spinner diameter="60"></mat-spinner>
+                  </div>
+                }
+                
+                <!-- Image Display -->
+                <img 
+                  [src]="getImageUrl(item.url)" 
+                  [alt]="item.caption || 'Memory image'"
+                  class="memory-image"
+                  [class.loaded]="!imageLoading()"
+                  (load)="onImageLoad()"
+                  (error)="onImageError()">
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Next item -->
+        @if (nextItem(); as next) {
+          <div class="slide-item slide-next">
+            @if (next.type === 'video') {
+              <video [src]="next.url" class="memory-video" preload="metadata">
+                Your browser does not support the video tag.
+              </video>
+            } @else {
+              <img [src]="getImageUrl(next.url)" [alt]="next.caption || 'Memory image'" class="memory-image loaded">
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Image counter -->
+      <div class="image-counter">
+        {{ currentIndex() + 1 }} / {{ items().length }}
+      </div>
     </div>
   </div>
 </div>

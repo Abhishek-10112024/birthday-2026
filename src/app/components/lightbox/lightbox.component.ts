@@ -47,13 +47,34 @@ export class LightboxComponent implements OnDestroy {
   // Swipe gesture tracking
   private touchStartX = 0;
   private touchStartY = 0;
-  private readonly SWIPE_THRESHOLD = 50; // Minimum distance for swipe
+  private touchCurrentX = 0;
+  private isSwipeGesture = false;
+  private readonly SWIPE_THRESHOLD = 50;
+  private readonly SWIPE_VELOCITY_THRESHOLD = 0.3;
+  private touchStartTime = 0;
+  
+  // Swipe animation state
+  swipeOffset = signal<number>(0);
+  isAnimating = signal<boolean>(false);
 
   // Current item computed
   currentItem = computed(() => {
     const index = this.currentIndex();
     const itemsList = this.items();
     return itemsList[index] || null;
+  });
+
+  // Previous and next items for smooth transition
+  prevItem = computed(() => {
+    const index = this.currentIndex();
+    const itemsList = this.items();
+    return index > 0 ? itemsList[index - 1] : null;
+  });
+
+  nextItem = computed(() => {
+    const index = this.currentIndex();
+    const itemsList = this.items();
+    return index < itemsList.length - 1 ? itemsList[index + 1] : null;
   });
 
   constructor() {
@@ -113,29 +134,103 @@ export class LightboxComponent implements OnDestroy {
     }
   }
 
-  // Swipe gesture handlers for navigation
+  // Swipe gesture handlers for smooth Instagram-style navigation
   onSwipeStart(event: TouchEvent): void {
+    if (this.isAnimating()) return;
+    
     this.touchStartX = event.touches[0].clientX;
     this.touchStartY = event.touches[0].clientY;
+    this.touchCurrentX = this.touchStartX;
+    this.touchStartTime = Date.now();
+    this.isSwipeGesture = false;
+  }
+
+  onSwipeMove(event: TouchEvent): void {
+    if (this.isAnimating()) return;
+    
+    this.touchCurrentX = event.touches[0].clientX;
+    const deltaX = this.touchCurrentX - this.touchStartX;
+    const deltaY = event.touches[0].clientY - this.touchStartY;
+    
+    // Determine if this is a horizontal swipe
+    if (!this.isSwipeGesture && Math.abs(deltaX) > 10) {
+      this.isSwipeGesture = Math.abs(deltaX) > Math.abs(deltaY);
+    }
+    
+    if (this.isSwipeGesture) {
+      event.preventDefault();
+      
+      // Apply resistance at edges
+      let offset = deltaX;
+      if ((deltaX > 0 && !this.prevItem()) || (deltaX < 0 && !this.nextItem())) {
+        offset = deltaX * 0.3; // Resistance when no more items
+      }
+      
+      this.swipeOffset.set(offset);
+    }
   }
 
   onSwipeEnd(event: TouchEvent): void {
+    if (this.isAnimating()) return;
+    
     const touchEndX = event.changedTouches[0].clientX;
-    const touchEndY = event.changedTouches[0].clientY;
-    
     const deltaX = touchEndX - this.touchStartX;
-    const deltaY = touchEndY - this.touchStartY;
+    const deltaTime = Date.now() - this.touchStartTime;
+    const velocity = Math.abs(deltaX) / deltaTime;
     
-    // Only trigger swipe if horizontal movement is greater than vertical
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.SWIPE_THRESHOLD) {
-      if (deltaX > 0) {
-        // Swipe right -> go to previous
-        this.navigate(-1);
+    // Determine if we should navigate based on distance or velocity
+    const shouldNavigate = Math.abs(deltaX) > this.SWIPE_THRESHOLD || velocity > this.SWIPE_VELOCITY_THRESHOLD;
+    
+    if (this.isSwipeGesture && shouldNavigate) {
+      if (deltaX > 0 && this.prevItem()) {
+        this.animateSwipe(1); // Animate to previous (slide right)
+      } else if (deltaX < 0 && this.nextItem()) {
+        this.animateSwipe(-1); // Animate to next (slide left)
       } else {
-        // Swipe left -> go to next
-        this.navigate(1);
+        this.animateSwipe(0); // Snap back
       }
+    } else {
+      this.animateSwipe(0); // Snap back
     }
+    
+    this.isSwipeGesture = false;
+  }
+
+  private animateSwipe(direction: number): void {
+    this.isAnimating.set(true);
+    
+    const containerWidth = isPlatformBrowser(this.platformId) ? window.innerWidth : 400;
+    const targetOffset = direction * containerWidth;
+    
+    // Animate to target position
+    const startOffset = this.swipeOffset();
+    const startTime = Date.now();
+    const duration = 250; // ms
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease out cubic
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentOffset = startOffset + (targetOffset - startOffset) * easeOut;
+      
+      this.swipeOffset.set(currentOffset);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        // Animation complete
+        this.swipeOffset.set(0);
+        this.isAnimating.set(false);
+        
+        if (direction !== 0) {
+          this.navigate(direction > 0 ? -1 : 1);
+        }
+      }
+    };
+    
+    requestAnimationFrame(animate);
   }
 
   // Ensure body overflow is restored if the component is destroyed without close
