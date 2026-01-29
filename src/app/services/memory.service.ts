@@ -29,11 +29,6 @@ export class MemoryService {
           type: 'image',
           caption: 'Tumhe shayad ye photo buri lage, lekin mere liye bahut achhi hai. Love your smile 😍😍😍'
         },
-        {
-          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/first%20data%20-2.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9maXJzdCBkYXRhIC0yLmpwZyIsImlhdCI6MTc2ODc0ODA4OSwiZXhwIjoxODMxODIwMDg5fQ.IKsZxTjhE1VQYvRhbaP1JVasrQPsa1mBMabcbghpYss',
-          type: 'image',
-          caption: 'Tumhe shayad ye photo buri lage, lekin mere liye bahut achhi hai. Love your smile 😍😍😍'
-        },
       ],
       x: 36,
       y: 12,
