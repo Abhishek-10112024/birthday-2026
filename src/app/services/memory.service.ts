@@ -35,8 +35,8 @@ export class MemoryService {
           caption: 'Tumhe shayad ye photo buri lage, lekin mere liye bahut achhi hai. Love your smile 😍😍😍'
         },
       ],
-      x: 15,
-      y: 25,
+      x: 36,
+      y: 12,
       unlocked: false
     },
     {
@@ -94,8 +94,9 @@ export class MemoryService {
           caption: 'Haaye sundarta, jungle ke janwar bhi dekh ke sharma jaaye 🙈🙈🙈'
         }
       ],
-      x: 30,
-      y: 50,
+
+      x: 53,
+      y: 5,
       unlocked: false
     },
     {
@@ -119,12 +120,39 @@ export class MemoryService {
           caption: 'Strong Bhiyus 💪🏻💪🏻💪🏻'
         }
       ],
-      x: 50,
-      y: 20,
+      x: 67,
+      y: 8,
+
       unlocked: false
     },
     {
       id: 4,
+      title: 'Kuchh cringe bhi to chahiye',
+      description: 'Wonderful dance',
+      media: [
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_1_2026-01-26_15-40-52.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18xXzIwMjYtMDEtMjZfMTUtNDAtNTIuanBnIiwiaWF0IjoxNzY5NDIyMzc0LCJleHAiOjE4MDA5NTgzNzR9.ui8NzWfefaGKlY41TSrQn-Oq0Xn5NzlElDawdvtBdvE',
+          type: 'image',
+          caption: 'Art and culture'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-34.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM0Lm1wNCIsImlhdCI6MTc2OTQyMjQ0NiwiZXhwIjoxODAwOTU4NDQ2fQ.c5KIeFOGboSs8fEsRZAQcA2SagDHPgKN-WlIHHq8RBQ',
+          type: 'video',
+          caption: 'Beauty everywhere'
+        },
+        {
+          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-34.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM0Lm1wNCIsImlhdCI6MTc2OTQyMjQ0NiwiZXhwIjoxODAwOTU4NDQ2fQ.c5KIeFOGboSs8fEsRZAQcA2SagDHPgKN-WlIHHq8RBQ',
+          type: 'video',
+          caption: 'Beauty everywhere'
+        }
+      ],
+      x: 68,
+      y: 23,
+
+      unlocked: false
+    },
+    {
+      id: 5,
       title: 'Our Birthday Together',
       description: 'Thank you iss special birthday ke liye',
       media: [
@@ -144,12 +172,13 @@ export class MemoryService {
           caption: 'We deserve one more chance'
         }
       ],
-      x: 70,
-      y: 30,
+      x: 68,
+      y: 43,
+
       unlocked: false
     },
     {
-      id: 5,
+      id: 6,
       title: 'CRY BABY',
       description: 'I understand ki kitne lucky ho tum agar tumhara partner tumhare pass ro raha hai to',
       media: [
@@ -169,12 +198,14 @@ export class MemoryService {
           caption: '🤣🤣🤣🤣🤣🤣🤣'
         }
       ],
-      x: 85,
-      y: 40,
+      x: 55,
+      y: 34,
+
+
       unlocked: false
     },
     {
-      id: 6,
+      id: 7,
       title: 'Bahut Mehga hotel in Jabalpur',
       description: 'Yaad to hoga hi tumhe, Shivom le gaya tha kitni mehgi jagah, mere poore pese khatam ho gaye the 😖😖😖',
       media: [
@@ -194,12 +225,15 @@ export class MemoryService {
           caption: 'Everything about us is not perfect, lekin me use accept karne ready hu aur taiyar hu dheere dheere perfect banane'
         }
       ],
-      x: 90,
-      y: 60,
+      x: 56,
+      y: 46,
+
+
+
       unlocked: false
     },
     {
-      id: 7,
+      id: 8,
       title: 'Stargazing Night',
       date: 'July 2024',
       description: 'Lying under the stars, and Dwivedi ki chhat',
@@ -225,12 +259,12 @@ export class MemoryService {
           caption: 'Tumne kaha tha achhi nahi lag rahi photo, lekin mujhe to kaafi pasand hai'
         }
       ],
-      x: 75,
-      y: 70,
+      x: 78,
+      y: 55,
       unlocked: false
     },
     {
-      id: 8,
+      id: 9,
       title: 'Memories captured together',
       description: 'Har photo lagate hue yahi lag raha ki we should be have clicked more photos together 😔',
       media: [
@@ -250,12 +284,12 @@ export class MemoryService {
           caption: 'Cuteness at its peak ❣️🖤❣️🖤❣️🖤❣️'
         }
       ],
-      x: 55,
-      y: 75,
+      x: 65,
+      y: 96,
       unlocked: false
     },
     {
-      id: 9,
+      id: 10,
       title: 'Met after a long time',
       description: 'Pune se aake kitne time baad mile the apan 🥺',
       media: [
@@ -276,11 +310,11 @@ export class MemoryService {
         },
       ],
       x: 35,
-      y: 80,
+      y: 96,
       unlocked: false
     },
     {
-      id: 10,
+      id: 11,
       title: 'Photo obsessed cutie',
       description: 'Farq nahi padta ki filter wali photo hai ya unfilter, yahi photos hai mere pass tumhari yaad ke liye',
       media: [
@@ -295,12 +329,12 @@ export class MemoryService {
           caption: '🖤'
         }
       ],
-      x: 15,
-      y: 70,
+      x: 25,
+      y: 54,
       unlocked: false
     },
     {
-      id: 11,
+      id: 12,
       title: 'Black Couple (BLK)',
       description: 'Ham dono hi black me achhe lagte hain!!!',
       media: [
@@ -320,12 +354,12 @@ export class MemoryService {
           caption: 'Found treasures 🤤'
         }
       ],
-      x: 10,
-      y: 45,
+      x: 45,
+      y: 46,
       unlocked: false
     },
     {
-      id: 12,
+      id: 13,
       title: 'Movie night',
       description: 'Packed with winter specials in the chilly night',
       media: [
@@ -350,12 +384,12 @@ export class MemoryService {
           caption: 'Hamari model movie dekhne chali'
         }
       ],
-      x: 45,
-      y: 35,
+      x: 44,
+      y: 34,
       unlocked: false
     },
     {
-      id: 13,
+      id: 14,
       title: 'Ride together',
       description: 'Honestly mujhe ye bhi yaad nahi kabki hai',
       media: [
@@ -370,35 +404,11 @@ export class MemoryService {
           caption: 'Cute ❤️'
         }
       ],
-      x: 60,
-      y: 55,
+      x: 35,
+      y: 36,
       unlocked: false
     },
-    {
-      id: 14,
-      title: 'Kuchh cringe bhi to chahiye',
-      description: 'Wonderful dance',
-      media: [
-        {
-          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_1_2026-01-26_15-40-52.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18xXzIwMjYtMDEtMjZfMTUtNDAtNTIuanBnIiwiaWF0IjoxNzY5NDIyMzc0LCJleHAiOjE4MDA5NTgzNzR9.ui8NzWfefaGKlY41TSrQn-Oq0Xn5NzlElDawdvtBdvE',
-          type: 'image',
-          caption: 'Art and culture'
-        },
-        {
-          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-34.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM0Lm1wNCIsImlhdCI6MTc2OTQyMjQ0NiwiZXhwIjoxODAwOTU4NDQ2fQ.c5KIeFOGboSs8fEsRZAQcA2SagDHPgKN-WlIHHq8RBQ',
-          type: 'video',
-          caption: 'Beauty everywhere'
-        },
-        {
-          url: 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/video_2026-01-26_15-40-34.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy92aWRlb18yMDI2LTAxLTI2XzE1LTQwLTM0Lm1wNCIsImlhdCI6MTc2OTQyMjQ0NiwiZXhwIjoxODAwOTU4NDQ2fQ.c5KIeFOGboSs8fEsRZAQcA2SagDHPgKN-WlIHHq8RBQ',
-          type: 'video',
-          caption: 'Beauty everywhere'
-        }
-      ],
-      x: 25,
-      y: 60,
-      unlocked: false
-    },
+
     {
       id: 15,
       title: '😍😍😍😍',
@@ -415,12 +425,13 @@ export class MemoryService {
           caption: 'Yaha tak aagye ho to gusse me phone to nahi feka hoga, isliye ek aur bold move'
         }
       ],
-      x: 80,
-      y: 80,
+      x: 33,
+      y: 28,
       unlocked: false
     }
   ]);
 
+  // Sequential constellation lines: 1→2→3→4→...→15→1 (closed loop)
   constellationLines = signal<ConstellationLine[]>([
     { from: 1, to: 2 },
     { from: 2, to: 3 },
@@ -435,7 +446,8 @@ export class MemoryService {
     { from: 11, to: 12 },
     { from: 12, to: 13 },
     { from: 13, to: 14 },
-    { from: 14, to: 15 }
+    { from: 14, to: 15 },
+    { from: 15, to: 1 }
   ]);
 
   unlockedCount = signal<number>(0); // Start with 0 unlocked
@@ -488,7 +500,7 @@ export class MemoryService {
   canUnlockMemory(id: number): boolean {
     // Memory 1 can always be unlocked
     if (id === 1) return true;
-    
+
     // For other memories, check if the previous memory is unlocked
     const previousMemory = this.memories().find(m => m.id === id - 1);
     return previousMemory?.unlocked === true;

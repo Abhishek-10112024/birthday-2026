@@ -32,33 +32,41 @@
   <!-- Audio Control Button -->
   <app-audio-control />
 
-  <!-- Canvas for constellation lines -->
-  <canvas #canvas class="constellation-canvas"></canvas>
+  <!-- Constellation wrapper - contains image and stars positioned relative to it -->
+  <div class="constellation-wrapper" #constellationWrapper>
+    <!-- Canvas for constellation lines -->
+    <canvas #canvas class="constellation-canvas"></canvas>
 
-  <!-- Memory stars -->
-  <div class="memory-stars">
-    @for (memory of memoryService.memories(); track memory.id) {
-      <div class="memory-star"
-           [class.unlocked]="memory.unlocked"
-           [class.hovered]="hoveredStar() === memory.id"
-           [attr.data-memory-id]="memory.id"
-           [style.left.%]="memory.x"
-           [style.top.%]="memory.y"
-           (click)="onStarClick(memory)"
-           (mouseenter)="onStarHover(memory.id)"
-           (mouseleave)="onStarHover(null)">
-        
-        <div class="star-glow"></div>
-        <div class="star-core">
-          <mat-icon>{{ memory.unlocked ? 'star' : 'star_border' }}</mat-icon>
-        </div>
-        
-        @if (hoveredStar() === memory.id) {
-          <div class="star-tooltip">
-            <span>{{ memory.unlocked ? memory.title : '???' }}</span>
+    <!-- Woman figure overlay -->
+    <div class="figure-overlay" [class.unlocked]="memoryService.areAllMemoriesUnlocked()">
+      <img src="https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/download.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9kb3dubG9hZC5wbmciLCJpYXQiOjE3Njk1OTUyMjUsImV4cCI6MTgwMTEzMTIyNX0.wslMWd8MGahWXXI7QNxKuAH_zAvbx10kITRNUghX2GY" alt="Figure" />
+    </div>
+
+    <!-- Memory stars - positioned relative to the wrapper -->
+    <div class="memory-stars">
+      @for (memory of memoryService.memories(); track memory.id) {
+        <div class="memory-star"
+             [class.unlocked]="memory.unlocked"
+             [class.hovered]="hoveredStar() === memory.id"
+             [attr.data-memory-id]="memory.id"
+             [style.left.%]="memory.x"
+             [style.top.%]="memory.y"
+             (click)="onStarClick(memory)"
+             (mouseenter)="onStarHover(memory.id)"
+             (mouseleave)="onStarHover(null)">
+          
+          <div class="star-glow"></div>
+          <div class="star-core">
+            <mat-icon>{{ memory.unlocked ? 'star' : 'star_border' }}</mat-icon>
           </div>
-        }
-      </div>
-    }
+          
+          @if (hoveredStar() === memory.id) {
+            <div class="star-tooltip">
+              <span>{{ memory.unlocked ? memory.title : '???' }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
   </div>
 </div>

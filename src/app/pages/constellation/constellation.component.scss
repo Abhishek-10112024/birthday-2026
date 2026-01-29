@@ -5,6 +5,18 @@
   height: 100dvh; // Dynamic viewport height - accounts for mobile browser UI
   background: linear-gradient(to bottom, #0a0e27 0%, #1a1a3e 50%, #2d1b4e 100%);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Wrapper that contains image and stars - maintains aspect ratio
+.constellation-wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1.2; // Adjust based on your image aspect ratio
+  z-index: 2;
 }
 
 .stars-background {
@@ -125,6 +137,62 @@
   pointer-events: none;
 }
 
+.figure-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.15;
+  transition: opacity 1.5s ease-in-out;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  &.unlocked {
+    opacity: 0.5;
+  }
+}
+
+.virgo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  
+  &.visible {
+    opacity: 1;
+  }
+  
+  .virgo-figure {
+    width: 100%;
+    height: 100%;
+    
+    .virgo-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw-virgo 2s ease-out forwards;
+      filter: drop-shadow(0 0 8px rgba(168, 192, 255, 0.6));
+    }
+  }
+}
+
+@keyframes draw-virgo {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .memory-stars {
   position: absolute;
   width: 100%;
@@ -142,8 +210,8 @@
 
   .star-glow {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -155,8 +223,8 @@
 
   .star-core {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,10 +232,10 @@
 
     mat-icon {
       color: rgba(255, 255, 255, 0.5);
-      font-size: 32px;
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
     }
   }
 
@@ -271,13 +339,13 @@
 
   .memory-star {
     .star-core {
-      width: 35px;
-      height: 35px;
+      width: 24px;
+      height: 24px;
 
       mat-icon {
-        font-size: 28px;
-        width: 28px;
-        height: 28px;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
       }
     }
   }

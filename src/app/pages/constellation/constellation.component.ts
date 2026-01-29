@@ -27,6 +27,7 @@ import { MemoryDialogComponent } from '../../components/memory-dialog/memory-dia
 })
 export class ConstellationComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('constellationWrapper', { static: false }) wrapperRef!: ElementRef<HTMLDivElement>;
   
   private router = inject(Router);
   private dialog = inject(MatDialog);
@@ -48,10 +49,10 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
 
   private setupCanvas(): void {
     const canvas = this.canvasRef.nativeElement;
-    const container = canvas.parentElement!;
+    const wrapper = this.wrapperRef.nativeElement;
     
-    canvas.width = container.clientWidth;
-    canvas.height = container.clientHeight;
+    canvas.width = wrapper.clientWidth;
+    canvas.height = wrapper.clientHeight;
     
     this.ctx = canvas.getContext('2d')!;
   }
@@ -66,9 +67,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Clear canvas
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw lines between all memories
-    this.ctx.lineWidth = 2;
-
+    // Draw lines between memories sequentially
     lines.forEach(line => {
       const fromMemory = memories.find(m => m.id === line.from);
       const toMemory = memories.find(m => m.id === line.to);
@@ -79,10 +78,12 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
         const toX = (toMemory.x / 100) * canvas.width;
         const toY = (toMemory.y / 100) * canvas.height;
 
-        // Brighter line if both memories are unlocked, dimmer if not
+        // Thicker and brighter if both memories are unlocked, thinner and dimmer if not
         if (fromMemory.unlocked && toMemory.unlocked) {
-          this.ctx.strokeStyle = 'rgba(168, 192, 255, 0.5)';
+          this.ctx.lineWidth = 2;
+          this.ctx.strokeStyle = 'rgba(168, 192, 255, 0.6)';
         } else {
+          this.ctx.lineWidth = 1.8;
           this.ctx.strokeStyle = 'rgba(168, 192, 255, 0.15)';
         }
 
@@ -97,8 +98,9 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   private animateIntro(): void {
     // Use setTimeout to ensure DOM is ready
     setTimeout(() => {
-      const header = this.canvasRef.nativeElement.parentElement?.querySelector('.constellation-header');
-      const progress = this.canvasRef.nativeElement.parentElement?.querySelector('.progress-container');
+      const container = this.wrapperRef?.nativeElement?.closest('.constellation-container');
+      const header = container?.querySelector('.constellation-header');
+      const progress = container?.querySelector('.progress-container');
       
       if (header) {
         gsap.from(header, {
@@ -122,7 +124,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private animateStars(): void {
-    const stars = this.canvasRef.nativeElement.parentElement?.querySelectorAll('.memory-star');
+    const stars = this.wrapperRef.nativeElement.querySelectorAll('.memory-star');
     if (!stars) return;
     
     stars.forEach((star, index) => {
@@ -144,7 +146,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Check if this memory can be unlocked (sequential order)
     if (!memory.unlocked && !this.memoryService.canUnlockMemory(memory.id)) {
       // Show feedback that this memory is locked
-      const starElement = this.canvasRef.nativeElement.parentElement?.querySelector(`[data-memory-id="${memory.id}"]`);
+      const starElement = this.wrapperRef.nativeElement.querySelector(`[data-memory-id="${memory.id}"]`);
       if (starElement) {
         // Shake animation for locked star
         gsap.to(starElement, {
@@ -175,7 +177,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private animateUnlock(memory: Memory): void {
-    const starElement = this.canvasRef.nativeElement.parentElement?.querySelector(`[data-memory-id="${memory.id}"]`);
+    const starElement = this.wrapperRef.nativeElement.querySelector(`[data-memory-id="${memory.id}"]`);
     if (starElement) {
       gsap.to(starElement, {
         scale: 1.5,
@@ -191,15 +193,15 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
   }
 
   private createParticleBurst(memory: Memory): void {
-    const container = this.canvasRef.nativeElement.parentElement?.querySelector('.constellation-container');
-    if (!container) return;
+    const wrapper = this.wrapperRef.nativeElement;
+    if (!wrapper) return;
 
     for (let i = 0; i < 12; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
       particle.style.left = `${memory.x}%`;
       particle.style.top = `${memory.y}%`;
-      container.appendChild(particle);
+      wrapper.appendChild(particle);
 
       const angle = (i / 12) * Math.PI * 2;
       const distance = 50 + Math.random() * 50;
@@ -248,21 +250,22 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
     // Play completion sound effect
     this.audioService.playSoundEffect('star-click');
     
-    // The canvas parent IS the constellation-container
-    const container = this.canvasRef.nativeElement.parentElement;
-    if (container) {
-      gsap.to(container, {
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.in',
-        onComplete: () => {
-          this.router.navigate(['/final-message']);
-        }
-      });
-    } else {
-      // Fallback: navigate directly if container not found
-      this.router.navigate(['/final-message']);
-    }
+    // Wait a moment to show the fully revealed figure, then navigate
+    setTimeout(() => {
+      const container = this.wrapperRef.nativeElement.closest('.constellation-container');
+      if (container) {
+        gsap.to(container, {
+          opacity: 0,
+          duration: 1,
+          ease: 'power2.in',
+          onComplete: () => {
+            this.router.navigate(['/final-message']);
+          }
+        });
+      } else {
+        this.router.navigate(['/final-message']);
+      }
+    }, 2000);
   }
 
   onStarHover(memoryId: number | null): void {
