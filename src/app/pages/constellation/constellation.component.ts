@@ -265,7 +265,7 @@ export class ConstellationComponent implements OnInit, AfterViewInit {
       } else {
         this.router.navigate(['/final-message']);
       }
-    }, 2000);
+    }, 500);
   }
 
   onStarHover(memoryId: number | null): void {
