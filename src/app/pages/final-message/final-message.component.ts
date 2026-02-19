@@ -18,13 +18,13 @@ export class FinalMessageComponent implements OnInit {
   private elementRef = inject(ElementRef);
   
   // Update this URL with your photo
-  photoUrl = 'https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/photo_2026-01-26_17-23-16.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waG90b18yMDI2LTAxLTI2XzE3LTIzLTE2LmpwZyIsImlhdCI6MTc2OTQyODQyMSwiZXhwIjoxODAwOTY0NDIxfQ.JxTQdPamyzUfzMefMQHXWEKfhGmxqeHhY_twY90t5DA';
+  photoUrl = '';
   photoLoading = signal(true);
 
   ngOnInit(): void {
     // Ensure background music is playing
     if (!this.audioService.isPlaying()) {
-      this.audioService.playBackgroundMusic('https://lcoggykjjrgyiwxcjksc.supabase.co/storage/v1/object/sign/memories/piano-inspirational-romantic-380709.mp3?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xYzRmMjZlMy03ZDkxLTRiNmItOTNjYy1iMDVjOGMxYTFhMDgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZW1vcmllcy9waWFuby1pbnNwaXJhdGlvbmFsLXJvbWFudGljLTM4MDcwOS5tcDMiLCJpYXQiOjE3Njk0NTQ5NDEsImV4cCI6MTgwMDk5MDk0MX0.an7Qgx0lRHaUx5FNHq6wZD8uHybLzlqqsbNk_-IR2TI');
+      this.audioService.playBackgroundMusic('');
     }
     
     // Play a special completion sound
@@ -126,7 +126,7 @@ export class FinalMessageComponent implements OnInit {
 
   openWhatsApp(): void {
     // Replace with your WhatsApp number (include country code without + or spaces)
-    const phoneNumber = '9479308616'; // Update this with actual number
+    const phoneNumber = '1234567890'; // Update this with actual number
     const message = encodeURIComponent('Hi! I just finished exploring the constellation of memories. ✨');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');

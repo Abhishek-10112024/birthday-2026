@@ -4,8 +4,8 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  // Static password - change this to your desired password
-  private readonly PASSWORD = 'poornima123';
+  // Personalized password for Sakshi's Birthday
+  private readonly PASSWORD = 'abhisha';
   private readonly STORAGE_KEY = 'constellation_authenticated';
 
   isAuthenticated = signal<boolean>(false);
