@@ -1,9 +1,0 @@
-Place your memory images here:
-- memory1.jpg
-- memory2.jpg
-- memory3.jpg
-- memory4.jpg
-- memory5.jpg
-- memory6.jpg
-
-Recommended size: 800x600px or similar aspect ratio
